@@ -1,4 +1,4 @@
-﻿namespace UpgradeYourself.Models.ViewModels
+﻿namespace UpgradeYourself.Windows.ViewModels.Base
 {
     using System.ComponentModel;
     using System.Runtime.CompilerServices;

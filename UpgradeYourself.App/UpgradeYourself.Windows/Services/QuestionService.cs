@@ -8,9 +8,8 @@
 
     using Newtonsoft.Json.Linq;
 
+    using Windows.ViewModels;
     using Models.Models;
-    using Models.ViewModels;
-
     public class QuestionService
     {
         private const string QuestionApiUrl = "http://localhost:53906/api/Question/Get?category=";

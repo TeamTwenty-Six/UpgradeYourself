@@ -1,9 +1,9 @@
-﻿namespace UpgradeYourself.Models.ViewModels
+﻿namespace UpgradeYourself.Windows.ViewModels
 {
     using System.Collections.Generic;
 
     using SQLite;
-
+    using Base;
     //[Table("TrainingSession")]
     public class TrainingSessionViewModel : BaseViewModel
     {

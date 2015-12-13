@@ -6,11 +6,10 @@
     using System.Threading.Tasks;
 
     using SQLite;
-    using Windows.Storage;
+    using global::Windows.Storage;
 
-    using Models.Models;
     using UpgradeYourself.Common;
-
+    using Models.Models;
 
     public class SQLiteData
     {

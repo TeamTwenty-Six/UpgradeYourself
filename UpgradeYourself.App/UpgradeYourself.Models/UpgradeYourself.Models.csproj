@@ -107,13 +107,9 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ViewModels\AnswerViewModel.cs" />
     <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\Image.cs" />
-    <Compile Include="ViewModels\BaseViewModel.cs" />
-    <Compile Include="ViewModels\QuestionViewModel.cs" />
     <Compile Include="Models\Skill.cs" />
-    <Compile Include="ViewModels\TrainingSessionViewModel.cs" />
     <Compile Include="Models\UserProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\UpgradeYourself.Models.rd.xml" />

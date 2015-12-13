@@ -1,11 +1,11 @@
-﻿namespace UpgradeYourself.Models.ViewModels
+﻿namespace UpgradeYourself.Windows.ViewModels
 {
     using System.Collections.Generic;
 
     using SQLite;
 
     using Models;
-
+    using Base;
     //[Table("Question")]
     public class QuestionViewModel : BaseViewModel
     {

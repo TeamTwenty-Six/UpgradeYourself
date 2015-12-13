@@ -1,0 +1,44 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:UpgradeYourself.Windows.Styles">
+    <Style x:Name="TextBlockMainHeaderStyle" TargetType="TextBlock" BasedOn="{StaticResource HeaderTextBlockStyle}">
+        <Setter Property="FontSize" Value="36"></Setter>
+    </Style>
+    <Style x:Name="TextBlockSubHeaderStyle" TargetType="TextBlock" BasedOn="{StaticResource HeaderTextBlockStyle}">
+        <Setter Property="FontSize" Value="12"></Setter>
+    </Style>
+    <Style x:Name="TextBlockPageTitleStyle" TargetType="TextBlock" BasedOn="{StaticResource HeaderTextBlockStyle}">
+        <Setter Property="FontSize" Value="20"></Setter>
+    </Style>
+    <Style x:Key="ButtonMainStyle" TargetType="Button">
+        <!--<Setter Property="Width" Value="250" />
+        <Setter Property="Height" Value="40" />-->
+        <!--<Setter Property="Foreground" Value="{StaticResource ApplicationForegroundThemeBrush}" />-->
+        <Setter Property="Background" Value="DarkCyan" /> <!--{StaticResource ApplicationPageBackgroundThemeBrush}-->
+        <!--<Setter Property="BorderBrush" Value="{StaticResource ApplicationForegroundThemeBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="FontSize" Value="20"></Setter>-->
+    </Style>
+    
+    <!-- Identity styles -->
+    <Style x:Key="TextBlockIdentityStyle" TargetType="TextBlock">
+        <Setter Property="Width" Value="250" />
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="Foreground" Value="{StaticResource ApplicationForegroundThemeBrush}" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+
+    <Style x:Key="TextBoxIdentityStyle" TargetType="TextBox">
+        <Setter Property="Width" Value="250"/>
+        <Setter Property="BorderThickness" Value="2"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
+    <Style x:Key="PasswordBoxIdentityStyle" TargetType="PasswordBox">
+        <Setter Property="Width" Value="250" />
+        <Setter Property="BorderThickness" Value="2" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+    
+</ResourceDictionary>

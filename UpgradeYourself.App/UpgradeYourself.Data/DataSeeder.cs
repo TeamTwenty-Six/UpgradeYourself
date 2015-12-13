@@ -1,8 +1,8 @@
 ﻿namespace UpgradeYourself.Data
 {
+    using Models.Models;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using UpgradeYourself.Models.Models;
 
     public class DataSeeder
     {

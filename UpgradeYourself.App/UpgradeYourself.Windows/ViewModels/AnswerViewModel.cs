@@ -1,5 +1,6 @@
-﻿namespace UpgradeYourself.Models.ViewModels
+﻿namespace UpgradeYourself.Windows.ViewModels
 {
+    using Base;
     using SQLite;
 
     //[Table("Answer")]
