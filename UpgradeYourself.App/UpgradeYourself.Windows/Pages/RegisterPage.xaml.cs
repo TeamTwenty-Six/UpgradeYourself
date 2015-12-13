@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using UpgradeYourself.Windows.ViewModels;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -25,6 +26,45 @@ namespace UpgradeYourself.Windows.Pages
         public RegisterPage()
         {
             this.InitializeComponent();
+            //this.ViewModel = new RegisterViewModel();
+        }
+
+        public RegisterViewModel ViewModel
+        {
+            get
+            {
+                return this.DataContext as RegisterViewModel;
+            }
+            set
+            {
+                this.DataContext = value;
+            }
+        }
+
+        /// <summary>
+        /// Invoked when this page is about to be displayed in a Frame.
+        /// </summary>
+        /// <param name="e">Event data that describes how this page was reached.
+        /// This parameter is typically used to configure the page.</param>
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            this.ViewModel = e.Parameter as RegisterViewModel;
+            //this.DataContext = e.Parameter;
+        }
+
+        private async void OnRegisterButtonClick(object sender, RoutedEventArgs e)
+        {
+            if (this.ViewModel == null)
+            {
+                // TODO: raise error
+                return;
+            }
+
+            bool isRegistered = await ViewModel.Register();
+            if (isRegistered)
+            {
+                this.Frame.Navigate(typeof(SkillsPage));
+            }
         }
     }
 }

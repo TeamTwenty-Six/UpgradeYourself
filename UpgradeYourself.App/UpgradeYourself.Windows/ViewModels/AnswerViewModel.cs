@@ -1,10 +1,10 @@
 ﻿namespace UpgradeYourself.Windows.ViewModels
 {
-    using Base;
+    using GalaSoft.MvvmLight;
     using SQLite;
 
     //[Table("Answer")]
-    public class AnswerViewModel : BaseViewModel
+    public class AnswerViewModel : ViewModelBase
     {
         //public int QuestionId { get; set; }
 

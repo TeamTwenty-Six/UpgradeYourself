@@ -1,6 +1,7 @@
 ﻿namespace UpgradeYourself.Windows.ViewModels
 {
     using Common;
+    using GalaSoft.MvvmLight;
     using global::Windows.UI.Xaml;
     using global::Windows.UI.Xaml.Controls;
     using Pages;
@@ -10,9 +11,8 @@
     using System.Text;
     using System.Threading.Tasks;
     using System.Windows.Input;
-    using UpgradeYourself.Windows.ViewModels.Base;
 
-    public class MainPageViewModel : BaseViewModel
+    public class MainPageViewModel : ViewModelBase
     {
         private ICommand goToRegisterCommand;
         private ICommand goToLogInCommand;
@@ -45,7 +45,7 @@
 
         private void GoToRegister()
         {
-            (Window.Current.Content as Frame).Navigate(typeof(RegisterPage));
+            (Window.Current.Content as Frame).Navigate(typeof(RegisterPage), new RegisterViewModel());
 
             // TODO: figure out back button for partial pages and use this instead
             //this.Content = new RegisterContent();
@@ -53,7 +53,7 @@
 
         private void GoToLogIn()
         {
-            (Window.Current.Content as Frame).Navigate(typeof(LogInPage));
+            (Window.Current.Content as Frame).Navigate(typeof(LogInPage), new LoginPageViewModel());
 
             // TODO: figure out back button for partial pages and use this instead
             //this.Content = new LogInContent();

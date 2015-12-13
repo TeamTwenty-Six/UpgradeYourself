@@ -17,7 +17,7 @@
         {
             var userProfile = new UserProfile()
             {
-                Name = "Pesho"
+                Username = "Pesho"
             };
 
             await this.data.AddAsync<UserProfile>(userProfile);

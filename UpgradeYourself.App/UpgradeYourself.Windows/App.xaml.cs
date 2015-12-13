@@ -1,8 +1,11 @@
-﻿using System;
+﻿using Parse;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using UpgradeYourself.Windows.Pages;
+using UpgradeYourself.Windows.ViewModels;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
@@ -34,6 +37,11 @@ namespace UpgradeYourself.Windows
                 Microsoft.ApplicationInsights.WindowsCollectors.Session);
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+
+            ParseClient.Initialize("Gdfu6FTaoCaAVAQHQPByYjxA0hIOjioXisVyke5B", "47LoPZ0LJdqV2Ep5UiqVXCCUd0CIrCBmong7YfKe");
+            //var testObject = new ParseObject("TestObject");
+            //testObject["foo"] = "bar";
+            //testObject.SaveAsync();
         }
 
         /// <summary>
@@ -82,10 +90,21 @@ namespace UpgradeYourself.Windows
 
             if (rootFrame.Content == null)
             {
+                Type pageTypeToLoad;
+                // todo: add training type chosen
+                if (ParseUser.CurrentUser != null)
+                {
+                    pageTypeToLoad = typeof(BeginTrainingPage);
+                }
+                else
+                {
+                    pageTypeToLoad = typeof(MainPage);
+                }
+
                 // When the navigation stack isn't restored navigate to the first page,
                 // configuring the new page by passing required information as a navigation
                 // parameter
-                rootFrame.Navigate(typeof(Pages.MainPage), e.Arguments);
+                rootFrame.Navigate(pageTypeToLoad, e.Arguments);
             }
             // Ensure the current window is active
             Window.Current.Activate();

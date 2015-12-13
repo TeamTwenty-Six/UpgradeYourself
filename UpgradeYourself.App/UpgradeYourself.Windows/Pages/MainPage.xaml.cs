@@ -36,6 +36,7 @@ namespace UpgradeYourself.Windows.Pages
             this.InitializeComponent();
             this.sqliteData = new SQLiteData();
             this.dataSeeder = new DataSeeder(this.sqliteData);
+            this.DataContext = new MainPageViewModel();
 
             //var skill = new Skill()
             //{
@@ -79,7 +80,7 @@ namespace UpgradeYourself.Windows.Pages
             var skills = await querySkills.ToListAsync();
 
             // show user
-            this.DataContext = userProfiles.FirstOrDefault();
+            //this.DataContext = userProfiles.FirstOrDefault();
         }
 
         private void GetTrainingSession(Skill skill)

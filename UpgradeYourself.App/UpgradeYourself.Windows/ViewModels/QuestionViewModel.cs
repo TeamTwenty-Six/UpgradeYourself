@@ -5,9 +5,10 @@
     using SQLite;
 
     using Models;
-    using Base;
+    using GalaSoft.MvvmLight;    
+    
     //[Table("Question")]
-    public class QuestionViewModel : BaseViewModel
+    public class QuestionViewModel : ViewModelBase
     {
         // todo: answerviewmodel
         private ICollection<AnswerViewModel> answers;

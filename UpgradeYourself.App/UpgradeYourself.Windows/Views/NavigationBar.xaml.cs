@@ -1,10 +1,9 @@
-﻿using System;
+﻿using Parse;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
-using System.Windows.Input;
-using UpgradeYourself.Windows.Common;
 using UpgradeYourself.Windows.Pages;
 using UpgradeYourself.Windows.ViewModels;
 using Windows.Foundation;
@@ -21,17 +20,17 @@ using Windows.UI.Xaml.Navigation;
 
 namespace UpgradeYourself.Windows.Views
 {
-    public sealed partial class LogInContent : UserControl
+    public sealed partial class NavigationBar : UserControl
     {
-        public LogInContent()
+        public NavigationBar()
         {
             this.InitializeComponent();
-            this.DataContext = new MainPageViewModel();
         }
 
-        private void OnLoginButtonClick(object sender, RoutedEventArgs e)
+        private void OnLogOutButtonClick(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            ParseUser.LogOut();
+            (Window.Current.Content as Frame).Navigate(typeof(LogInPage));
         }
     }
 }

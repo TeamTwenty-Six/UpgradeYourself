@@ -15,17 +15,19 @@
         // }
 
         [MaxLength(50)]
-        public string Name { get; set; }
+        public string Username { get; set; }
+
+        public string Password { get; set; }
 
         // public Image Image { get; set; }
-           
+
         // public ICollection<int> TrainingSessionIds
         // {
         //     get
         //     {
         //         return this.trainingSessionIds;
         //     }
-           
+
         //     set
         //     {
         //         this.trainingSessionIds = value;

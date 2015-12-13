@@ -3,9 +3,10 @@
     using System.Collections.Generic;
 
     using SQLite;
-    using Base;
+    using GalaSoft.MvvmLight;    
+    
     //[Table("TrainingSession")]
-    public class TrainingSessionViewModel : BaseViewModel
+    public class TrainingSessionViewModel : ViewModelBase
     {
         private ICollection<QuestionViewModel> questions;
 

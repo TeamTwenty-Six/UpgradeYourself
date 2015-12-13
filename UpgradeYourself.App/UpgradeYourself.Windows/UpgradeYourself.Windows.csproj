@@ -99,6 +99,9 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Common\DelegateCommand.cs" />
+    <Compile Include="Pages\BeginTrainingPage.xaml.cs">
+      <DependentUpon>BeginTrainingPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\LogInPage.xaml.cs">
       <DependentUpon>LogInPage.xaml</DependentUpon>
     </Compile>
@@ -108,24 +111,23 @@
     <Compile Include="Pages\RegisterPage.xaml.cs">
       <DependentUpon>RegisterPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\SkillsPage.xaml.cs">
+      <DependentUpon>SkillsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\QuestionService.cs" />
     <Compile Include="ViewModels\AnswerViewModel.cs" />
-    <Compile Include="ViewModels\Base\BaseViewModel.cs" />
+    <Compile Include="ViewModels\BeginTrainingViewModel.cs" />
+    <Compile Include="ViewModels\LoginPageViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\QuestionViewModel.cs" />
+    <Compile Include="ViewModels\RegisterViewModel.cs" />
     <Compile Include="ViewModels\TrainingSessionViewModel.cs" />
-    <Compile Include="Views\LogInContent.xaml.cs">
-      <DependentUpon>LogInContent.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\MainPageContent.xaml.cs">
-      <DependentUpon>MainPageContent.xaml</DependentUpon>
+    <Compile Include="Views\NavigationBar.xaml.cs">
+      <DependentUpon>NavigationBar.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PageHeader.xaml.cs">
       <DependentUpon>PageHeader.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\RegisterContent.xaml.cs">
-      <DependentUpon>RegisterContent.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -149,6 +151,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Pages\BeginTrainingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\LogInPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -161,24 +167,20 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\SkillsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Styles\UpgradeYourselfStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
-    <Page Include="Views\LogInContent.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\MainPageContent.xaml">
+    <Page Include="Views\NavigationBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\PageHeader.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\RegisterContent.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -197,7 +199,14 @@
       <Name>UpgradeYourself.Models</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Reference Include="Parse">
+      <HintPath>..\Libs\Parse.dll</HintPath>
+    </Reference>
+    <Reference Include="Parse.WinRT">
+      <HintPath>..\Libs\Parse.WinRT.dll</HintPath>
+    </Reference>
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

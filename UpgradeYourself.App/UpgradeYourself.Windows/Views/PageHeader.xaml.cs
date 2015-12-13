@@ -1,10 +1,14 @@
-﻿using System;
+﻿using Parse;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Windows.Input;
+using UpgradeYourself.Windows.Common;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -23,6 +27,7 @@ namespace UpgradeYourself.Windows.Views
         {
             this.InitializeComponent();
             this.DataContext = this;
+            this.RenderHeaderDependingOnUser();
         }
 
         public string PageTitleText
@@ -42,5 +47,21 @@ namespace UpgradeYourself.Windows.Views
         public static readonly DependencyProperty PageTitleTextProperty =
             DependencyProperty.Register("PageTitleText", typeof(string), typeof(PageHeader),
             new PropertyMetadata(null));
+
+        private void RenderHeaderDependingOnUser()
+        {
+            if (ParseUser.CurrentUser == null)
+            {
+                this.navBar.Visibility = Visibility.Collapsed;
+                this.pageTitle.Visibility = Visibility.Visible;
+                this.pageSubTitle.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                this.navBar.Visibility = Visibility.Visible;
+                this.pageTitle.Visibility = Visibility.Collapsed;
+                this.pageSubTitle.Visibility = Visibility.Collapsed;
+            }
+        }
     }
 }

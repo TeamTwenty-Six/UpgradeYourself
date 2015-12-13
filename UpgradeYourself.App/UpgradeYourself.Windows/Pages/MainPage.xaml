@@ -24,7 +24,7 @@
             <RowDefinition Height="140"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        
+
         <!-- Page header -->
         <views:PageHeader Grid.Row="0" Grid.Column="0"></views:PageHeader>
 
@@ -35,7 +35,19 @@
                    Foreground="Black">
             </TextBlock>-->
             <!--<Button Content="Go to Test" Click="Navigate"></Button>-->
-            <views:MainPageContent></views:MainPageContent>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" TextWrapping="Wrap" HorizontalAlignment="Center" TextAlignment="Center" Width="250" Margin="10, 20, 20, 10" Style="{StaticResource TextBlockPageTitleStyle}" 
+                   Text="Welcome to Upgrade Yourself, your programming skills training app. 
+                   Receive challenges each day to build the skills you want. 
+                   The more you train, the harder the challenges become.">
+                </TextBlock>
+                <HyperlinkButton Grid.Row="1"  HorizontalAlignment="Center" Margin="0, 0, 60, 0" Command="{Binding GoToLogInCommand}" Content="Log in"/>
+                <HyperlinkButton Grid.Row="1"  HorizontalAlignment="Center" Margin="60, 0, 0, 0" Command="{Binding GoToRegisterCommand}" Content="Register"/>
+            </Grid>
         </StackPanel>
     </Grid>
 </Page>
