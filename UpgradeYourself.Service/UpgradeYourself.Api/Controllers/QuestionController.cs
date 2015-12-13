@@ -41,5 +41,17 @@
 
             return this.Ok(questions);
         }
+
+        [HttpGet]
+        public IHttpActionResult Get(string category, int difficulty)
+        {
+            var questions = this.data
+                .Questions
+                .All()
+                .Where(q => q.Category.Name.ToLower() == category.ToLower() && q.Difficulty == difficulty)
+                .Select(QuestionViewModel.FromQuestion);
+
+            return this.Ok(questions);
+        }
     }
 }

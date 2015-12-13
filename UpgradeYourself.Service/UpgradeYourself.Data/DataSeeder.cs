@@ -35,6 +35,7 @@
                 {
                     CategoryId = 1,
                     Content = "What is the correct syntax for referring to an external script called \"xxx.js\"?",
+                    Difficulty = 1,
                     Answers = new List<Answer>
                     {
                             new Answer()
@@ -59,6 +60,7 @@
                 {
                     CategoryId = 1,
                     Content = "How do you write \"Hello World\" in an alert box?",
+                    Difficulty = 1,
                     Answers = new List<Answer>
                     {
                         new Answer()

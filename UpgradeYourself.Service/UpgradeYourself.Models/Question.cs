@@ -1,4 +1,6 @@
-﻿namespace UpgradeYourself.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace UpgradeYourself.Models
 {
     using System.Collections.Generic;
 
@@ -17,7 +19,12 @@
 
         public Category Category { get; set; }
 
+        [Required]
+        [StringLength(500)]
         public string Content { get; set; }
+
+        [Required]
+        public int Difficulty { get; set; }
 
         public virtual ICollection<Answer> Answers
         {

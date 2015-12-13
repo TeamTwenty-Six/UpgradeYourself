@@ -42,6 +42,7 @@ namespace UpgradeYourself.Windows.Pages
             //{
             //    Name = "JavaScript"
             //};
+            //GetTrainingSession(skill);
         }
 
         /// <summary>
@@ -83,19 +84,20 @@ namespace UpgradeYourself.Windows.Pages
             //this.DataContext = userProfiles.FirstOrDefault();
         }
 
-        private void GetTrainingSession(Skill skill)
-        {
-            var questionService = new QuestionService();
-            var questions = questionService.GetQuestionsInSkill(skill).ToList();
+        //private void GetTrainingSession(Skill skill)
+        //{
+        //    var questionService = new QuestionService();
+        //    var questions = questionService.GetQuestionsInSkill(skill).ToList();
+        //    var questionsDifficulty = questionService.GetQuestionsInSkillWithDifficulty(skill, 0).ToList();
 
-            var session = new TrainingSessionViewModel()
-            {
-                Skill = skill.Name,
-                Questions = questions
-            };
+        //    var session = new TrainingSessionViewModel()
+        //    {
+        //        Skill = skill.Name,
+        //        Questions = questions
+        //    };
 
-            this.DataContext = session;
-        }
+        //    this.DataContext = session;
+        //}
 
         //private void Navigate(object sender, RoutedEventArgs e)
         //{

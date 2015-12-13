@@ -19,6 +19,7 @@
                     Id = q.Id,
                     Content = q.Content,
                     Category = q.Category.Name.ToString(),
+                    Difficulty = q.Difficulty,
                     Answers = q.Answers.AsQueryable()
                     .Select(AnswerViewModel.FromAnswer)
                     .ToList()
@@ -32,7 +33,11 @@
         public string Category { get; set; }
         
         [Required]
+        [StringLength(500)]
         public string Content { get; set; }
+        
+        [Required]
+        public int Difficulty { get; set; }
 
         public virtual ICollection<AnswerViewModel> Answers { get; set; }
     }

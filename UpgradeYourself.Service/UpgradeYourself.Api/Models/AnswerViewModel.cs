@@ -25,7 +25,7 @@
         public int Id { get; set; }
 
         [Required]
-        [MaxLength(250)]
+        [StringLength(500)]
         public string Content { get; set; }
 
         public int QuestionId { get; set; }

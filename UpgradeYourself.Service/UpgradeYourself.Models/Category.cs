@@ -7,10 +7,10 @@
         public int Id { get; set; }
 
         [Required]
-        [MaxLength(50)]
+        [StringLength(50)]
         public string Name { get; set; }
 
-        [MaxLength(250)]
+        [StringLength(250)]
         public string Description { get; set; }
     }
 }
