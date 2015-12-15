@@ -30,13 +30,39 @@
                 new Skill()
                 {
                     Name = "JavaScript",
-                    Description = "Improve your JavaScript knowledge."
+                    Description = "Improve your JavaScript knowledge.",
+                    ImageUrl = "../Assets/Imgs/icon-javascript.png"
                 },
                 new Skill()
                 {
                     Name = "C#",
-                    Description = "Improve your C# knowledge."
-                }
+                    Description = "Improve your C# knowledge.",
+                    ImageUrl = "../Assets/Imgs/icon-csharp.png"
+                },
+                new Skill()
+                {
+                    Name = "OOP",
+                    Description = "Improve your OOP knowledge.",
+                    ImageUrl = "../Assets/Imgs/icon-oop.png"
+                },
+                new Skill()
+                {
+                    Name = "Web Api",
+                    Description = "Improve your ASP.Net Web Api knowledge.",
+                    ImageUrl = "../Assets/Imgs/icon-webapi.png"
+                },
+                new Skill()
+                {
+                    Name = "CSS",
+                    Description = "Improve your CSS knowledge.",
+                    ImageUrl = "../Assets/Imgs/icon-css.png"
+                },
+                new Skill()
+                {
+                    Name = "Java",
+                    Description = "Improve your Java knowledge.",
+                    ImageUrl = "../Assets/Imgs/icon-java.png"
+                },
             };
 
             await this.data.AddMultipleAsync<Skill>(skills);

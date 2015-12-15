@@ -68,7 +68,7 @@ namespace UpgradeYourself.Windows.Pages
             bool isLoggedIn = await ViewModel.Login();
             if (isLoggedIn)
             {
-                this.Frame.Navigate(typeof(BeginTrainingPage));
+                this.Frame.Navigate(typeof(SkillsPage));
             }
         }
     }

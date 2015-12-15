@@ -60,7 +60,7 @@
                 {
                     CategoryId = 1,
                     Content = "How do you write \"Hello World\" in an alert box?",
-                    Difficulty = 1,
+                    Difficulty = 2,
                     Answers = new List<Answer>
                     {
                         new Answer()

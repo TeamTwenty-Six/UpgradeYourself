@@ -99,9 +99,6 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Common\DelegateCommand.cs" />
-    <Compile Include="Pages\BeginTrainingPage.xaml.cs">
-      <DependentUpon>BeginTrainingPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Pages\LogInPage.xaml.cs">
       <DependentUpon>LogInPage.xaml</DependentUpon>
     </Compile>
@@ -111,17 +108,25 @@
     <Compile Include="Pages\RegisterPage.xaml.cs">
       <DependentUpon>RegisterPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\SelectLevelPage.xaml.cs">
+      <DependentUpon>SelectLevelPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\SkillsPage.xaml.cs">
       <DependentUpon>SkillsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\TrainingSessionPage.xaml.cs">
+      <DependentUpon>TrainingSessionPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\QuestionService.cs" />
     <Compile Include="ViewModels\AnswerViewModel.cs" />
-    <Compile Include="ViewModels\BeginTrainingViewModel.cs" />
+    <Compile Include="ViewModels\SelectLevelViewModel.cs" />
     <Compile Include="ViewModels\LoginPageViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\QuestionViewModel.cs" />
     <Compile Include="ViewModels\RegisterViewModel.cs" />
+    <Compile Include="ViewModels\SkillsListViewModel.cs" />
+    <Compile Include="ViewModels\SkillViewModel.cs" />
     <Compile Include="ViewModels\TrainingSessionViewModel.cs" />
     <Compile Include="Views\NavigationBar.xaml.cs">
       <DependentUpon>NavigationBar.xaml</DependentUpon>
@@ -137,6 +142,12 @@
     <None Include="UpgradeYourself.Windows_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Imgs\icon-csharp.png" />
+    <Content Include="Assets\Imgs\icon-css.png" />
+    <Content Include="Assets\Imgs\icon-java.png" />
+    <Content Include="Assets\Imgs\icon-javascript.png" />
+    <Content Include="Assets\Imgs\icon-oop.png" />
+    <Content Include="Assets\Imgs\icon-webapi.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -151,10 +162,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Pages\BeginTrainingPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Pages\LogInPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -167,7 +174,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\SelectLevelPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\SkillsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\TrainingSessionPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -207,6 +222,7 @@
       <HintPath>..\Libs\Parse.WinRT.dll</HintPath>
     </Reference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

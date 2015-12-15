@@ -1,14 +1,14 @@
 ﻿<Page
-    x:Class="UpgradeYourself.Windows.Pages.BeginTrainingPage"
+    x:Class="UpgradeYourself.Windows.Pages.TrainingSessionPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:UpgradeYourself.Windows.Pages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-       xmlns:views="using:UpgradeYourself.Windows.Views"
+    xmlns:views="using:UpgradeYourself.Windows.Views"
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <views:PageHeader PageTitleText="Begin training" Grid.Row="0" Grid.Column="0"></views:PageHeader>
+        <views:PageHeader PageTitleText="Train" Grid.Row="0" Grid.Column="0"></views:PageHeader>
     </Grid>
 </Page>

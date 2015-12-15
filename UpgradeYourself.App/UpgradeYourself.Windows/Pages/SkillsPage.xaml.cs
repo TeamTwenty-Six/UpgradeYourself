@@ -1,8 +1,12 @@
-﻿using System;
+﻿using SQLite;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using UpgradeYourself.Common;
+using UpgradeYourself.Models.Models;
+using UpgradeYourself.Windows.ViewModels;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -23,8 +27,51 @@ namespace UpgradeYourself.Windows.Pages
     public sealed partial class SkillsPage : Page
     {
         public SkillsPage()
+            : this(new SkillsListViewModel())
+        {
+        }
+
+        public SkillsPage(SkillsListViewModel viewModel)
         {
             this.InitializeComponent();
+            this.ViewModel = viewModel;
+            this.NavigationCacheMode = NavigationCacheMode.Enabled;
+        }
+
+        public SkillsListViewModel ViewModel
+        {
+            get
+            {
+                return this.DataContext as SkillsListViewModel;
+            }
+            set
+            {
+                this.DataContext = value;
+            }
+        }
+
+        public void OnGridViewSkillItemClick(object sender, RoutedEventArgs e)
+        {
+            var textBlock = e.OriginalSource as TextBlock;
+            if (textBlock == null)
+            {
+                var image = e.OriginalSource as Image;
+                var parent = image.Parent as StackPanel;
+                textBlock = parent.Children.Last() as TextBlock;
+            }
+
+            this.Frame.Navigate(typeof(SelectLevelPage), textBlock.Text);
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            SQLiteAsyncConnection conn = new SQLiteAsyncConnection(GlobalConstants.DbName);
+            var querySkills = conn.Table<Skill>();
+            var skills = querySkills.ToListAsync().Result;
+
+            this.ViewModel.Skills = skills.AsQueryable()
+                .Select(SkillViewModel.FromSkill)
+                .ToList();
         }
     }
 }

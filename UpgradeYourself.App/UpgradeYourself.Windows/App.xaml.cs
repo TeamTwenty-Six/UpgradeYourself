@@ -94,7 +94,7 @@ namespace UpgradeYourself.Windows
                 // todo: add training type chosen
                 if (ParseUser.CurrentUser != null)
                 {
-                    pageTypeToLoad = typeof(BeginTrainingPage);
+                    pageTypeToLoad = typeof(SkillsPage);
                 }
                 else
                 {
