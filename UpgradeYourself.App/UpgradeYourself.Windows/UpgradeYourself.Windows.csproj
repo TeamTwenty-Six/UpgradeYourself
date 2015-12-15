@@ -118,6 +118,7 @@
       <DependentUpon>TrainingSessionPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\SkillService.cs" />
     <Compile Include="Services\QuestionService.cs" />
     <Compile Include="ViewModels\AnswerViewModel.cs" />
     <Compile Include="ViewModels\SelectLevelViewModel.cs" />

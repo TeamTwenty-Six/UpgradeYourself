@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using UpgradeYourself.Common;
 using UpgradeYourself.Models.Models;
+using UpgradeYourself.Windows.Services;
 using UpgradeYourself.Windows.ViewModels;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -65,13 +66,33 @@ namespace UpgradeYourself.Windows.Pages
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            SQLiteAsyncConnection conn = new SQLiteAsyncConnection(GlobalConstants.DbName);
-            var querySkills = conn.Table<Skill>();
-            var skills = querySkills.ToListAsync().Result;
+            //SQLiteAsyncConnection conn = new SQLiteAsyncConnection(GlobalConstants.DbName);
+            //var querySkills = conn.Table<Skill>();
+            //var skills = querySkills.ToListAsync().Result;
 
-            this.ViewModel.Skills = skills.AsQueryable()
-                .Select(SkillViewModel.FromSkill)
+            //this.ViewModel.Skills = skills.AsQueryable()
+            //    .Select(SkillViewModel.FromSkill)
+            //    .ToList();
+
+            this.ViewModel.Skills = this.GetSkills();
+        }
+
+        private ICollection<SkillViewModel> GetSkills()
+        {
+            var skillService = new SkillService();
+
+            return skillService.GetSkills()
                 .ToList();
+
+            //  var questionsDifficulty = questionService.GetQuestionsInSkillWithDifficulty(skill, 0).ToList();
+
+            //var session = new TrainingSessionViewModel()
+            //{
+            //    Skill = skill.Name,
+            //    Questions = questions
+            //};
+
+            //this.DataContext = session;
         }
     }
 }

@@ -10,33 +10,34 @@
 
     using Windows.ViewModels;
     using Models.Models;
+    using Newtonsoft.Json;
     public class QuestionService
     {
         private const string QuestionInSkillApiUrl = "http://localhost:53906/api/Question/Get?category={0}";
         private const string QuestionInSkillWithDifficultyApiUrl = "http://localhost:53906/api/Question/Get?category={0}&difficulty={1}";
 
-        public IEnumerable<QuestionViewModel> GetQuestionsInSkill(Skill skill)
+        public IEnumerable<QuestionViewModel> GetQuestionsInSkill(string skillName)
         {        
-            var jsonResponse = this.GetQuestionsInSkillFromApi(skill);
+            var jsonResponse = this.GetQuestionsInSkillFromApi(skillName);
             var parsedResponse = JArray.Parse(jsonResponse);
 
             var result = this.ParseJsonResponse(parsedResponse);
             return result;
         }
 
-        public IEnumerable<QuestionViewModel> GetQuestionsInSkillWithDifficulty(Skill skill, int difficulty)
+        public IEnumerable<QuestionViewModel> GetQuestionsInSkillWithDifficulty(string skillName, int difficulty)
         {
-            var jsonResponse = this.GetQuestionsInSkillWithDifficultyFromApi(skill, difficulty);
+            var jsonResponse = this.GetQuestionsInSkillWithDifficultyFromApi(skillName, difficulty);
             var parsedResponse = JArray.Parse(jsonResponse);
 
             var result = this.ParseJsonResponse(parsedResponse);
             return result;
         }
 
-        private string GetQuestionsInSkillFromApi(Skill skill)
+        private string GetQuestionsInSkillFromApi(string skillName)
         {
             HttpClient client = new HttpClient();
-            var response = client.GetAsync(string.Format(QuestionInSkillApiUrl, skill.Name)).Result;
+            var response = client.GetAsync(string.Format(QuestionInSkillApiUrl, skillName)).Result;
             Task<string> result = null;
 
             try
@@ -51,10 +52,10 @@
             return result.Result;
         }
 
-        private string GetQuestionsInSkillWithDifficultyFromApi(Skill skill, int difficulty)
+        private string GetQuestionsInSkillWithDifficultyFromApi(string skillName, int difficulty)
         {
             HttpClient client = new HttpClient();
-            var response = client.GetAsync(string.Format(QuestionInSkillWithDifficultyApiUrl, skill.Name, difficulty)).Result;
+            var response = client.GetAsync(string.Format(QuestionInSkillWithDifficultyApiUrl, skillName, difficulty)).Result;
             Task<string> result = null;
 
             try

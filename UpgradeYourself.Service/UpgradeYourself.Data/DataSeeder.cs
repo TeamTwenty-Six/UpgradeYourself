@@ -14,13 +14,39 @@
                 new Category()
                 {
                     Name = "JavaScript",
-                    Description = "Improve your JavaScript knowledge."
+                    Description = "Improve your JavaScript knowledge.",
+                    ImageUrl = "../Assets/Imgs/icon-javascript.png"
                 },
                 new Category()
                 {
                     Name = "C#",
-                    Description = "Improve your C# knowledge."
-                }
+                    Description = "Improve your C# knowledge.",
+                    ImageUrl = "../Assets/Imgs/icon-csharp.png"
+                },
+                new Category()
+                {
+                    Name = "OOP",
+                    Description = "Improve your OOP knowledge.",
+                    ImageUrl = "../Assets/Imgs/icon-oop.png"
+                },
+                new Category()
+                {
+                    Name = "Web Api",
+                    Description = "Improve your ASP.Net Web Api knowledge.",
+                    ImageUrl = "../Assets/Imgs/icon-webapi.png"
+                },
+                new Category()
+                {
+                    Name = "CSS",
+                    Description = "Improve your CSS knowledge.",
+                    ImageUrl = "../Assets/Imgs/icon-css.png"
+                },
+                new Category()
+                {
+                    Name = "Java",
+                    Description = "Improve your Java knowledge.",
+                    ImageUrl = "../Assets/Imgs/icon-java.png"
+                },
             };
 
             context.Categories.AddOrUpdate(categories.ToArray());

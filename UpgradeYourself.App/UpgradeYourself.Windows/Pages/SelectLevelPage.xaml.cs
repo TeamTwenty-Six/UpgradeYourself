@@ -55,14 +55,13 @@ namespace UpgradeYourself.Windows.Pages
             //TODO: make this show as title -> PageTitleText="{Binding SelectedSkill}" BeginTrainingViewModel
             this.ViewModel.SelectedSkill = string.Format("Skill: {0}", skillName);
 
-            var questions = this.GetQuestons(skillName)
-                .OrderBy(q => q.Difficulty)
-                .GroupBy(q => q.Difficulty)
-                .Select(gr => new { Skill = gr.Key, Items = gr.ToList() })
-                .ToList();
+            //var questions = this.GetQuestons(skillName)
+            //    .OrderBy(q => q.Difficulty)
+            //    .GroupBy(q => q.Difficulty)
+            //    .Select(gr => new { Skill = gr.Key, Items = gr.ToList() })
+            //    .ToList();
 
-            var levels = questions.Select(x => x.Skill)
-                .ToList();
+            var levels = this.GetLevels(skillName);
 
             this.ViewModel.Levels = levels.Select(l => "Level " + l)
                 .ToList();
@@ -90,12 +89,16 @@ namespace UpgradeYourself.Windows.Pages
             this.Frame.Navigate(typeof(TrainingSessionPage), new { Skill = this.ViewModel.SelectedSkill, Level = level });
         }
 
-        private ICollection<QuestionViewModel> GetQuestons(string skillName)
+        private ICollection<int> GetLevels(string skillName)
         {
             var questionService = new QuestionService();
-            var skill = new Skill() { Name = skillName };
-            return questionService.GetQuestionsInSkill(skill)
+            return questionService.GetQuestionsInSkill(skillName)
+                .OrderBy(q => q.Difficulty)
+                .GroupBy(q => q.Difficulty)
+                .Select(gr => new { Skill = gr.Key, Items = gr.ToList() })
+                .Select(x => x.Skill)
                 .ToList();
+
             //  var questionsDifficulty = questionService.GetQuestionsInSkillWithDifficulty(skill, 0).ToList();
 
             //var session = new TrainingSessionViewModel()

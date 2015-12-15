@@ -61,14 +61,14 @@ namespace UpgradeYourself.Windows.Pages
             bool dbExists = await sqliteData.CheckDbAsync(GlobalConstants.DbName);
             if (!dbExists)
             {
-                await sqliteData.CreateDatabaseAsync<Skill>();
+                //await sqliteData.CreateDatabaseAsync<Skill>();
                 await sqliteData.CreateDatabaseAsync<UserProfile>();
                 //await sqliteData.CreateDatabaseAsync<Answer>();
                 //await sqliteData.CreateDatabaseAsync<Question>();
                 //await sqliteData.CreateDatabaseAsync<TrainingSession>();
 
                 await dataSeeder.SeedUserProfile();
-                await dataSeeder.SeedSkills();
+                //await dataSeeder.SeedSkills();
             }
 
             // test - get user profile TODO: remove
@@ -77,8 +77,8 @@ namespace UpgradeYourself.Windows.Pages
             var queryProfiles = conn.Table<UserProfile>();
             var userProfiles = await queryProfiles.ToListAsync();
 
-            var querySkills = conn.Table<Skill>();
-            var skills = await querySkills.ToListAsync();
+            //var querySkills = conn.Table<Skill>();
+            //var skills = await querySkills.ToListAsync();
 
             // show user
             //this.DataContext = userProfiles.FirstOrDefault();
