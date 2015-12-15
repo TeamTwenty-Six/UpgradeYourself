@@ -99,6 +99,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Common\DelegateCommand.cs" />
+    <Compile Include="DataModels\SkillLevelDataModel.cs" />
     <Compile Include="Pages\LogInPage.xaml.cs">
       <DependentUpon>LogInPage.xaml</DependentUpon>
     </Compile>
@@ -117,6 +118,9 @@
     <Compile Include="Pages\TrainingSessionPage.xaml.cs">
       <DependentUpon>TrainingSessionPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\TrainingSessionSummaryPage.xaml.cs">
+      <DependentUpon>TrainingSessionSummaryPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\SkillService.cs" />
     <Compile Include="Services\QuestionService.cs" />
@@ -128,6 +132,7 @@
     <Compile Include="ViewModels\RegisterViewModel.cs" />
     <Compile Include="ViewModels\SkillsListViewModel.cs" />
     <Compile Include="ViewModels\SkillViewModel.cs" />
+    <Compile Include="ViewModels\TrainingSessionSummaryViewModel.cs" />
     <Compile Include="ViewModels\TrainingSessionViewModel.cs" />
     <Compile Include="Views\NavigationBar.xaml.cs">
       <DependentUpon>NavigationBar.xaml</DependentUpon>
@@ -184,6 +189,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\TrainingSessionPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\TrainingSessionSummaryPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -18,7 +18,7 @@ namespace UpgradeYourself.Data.Migrations
         {
             if (!context.Categories.Any())
             {
-                this.seeder.SeedCategories(context);       
+                this.seeder.SeedCategories(context);
                 this.seeder.SeedQuestions(context);
             }
         }

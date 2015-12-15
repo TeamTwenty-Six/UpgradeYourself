@@ -5,23 +5,45 @@
     using SQLite;
 
     using Models;
-    using GalaSoft.MvvmLight;    
-    
-    //[Table("Question")]
+    using GalaSoft.MvvmLight;
+
     public class QuestionViewModel : ViewModelBase
     {
-        // todo: answerviewmodel
         private ICollection<AnswerViewModel> answers;
+        private string content;
+        private string skill;
 
         public QuestionViewModel()
         {
             this.answers = new List<AnswerViewModel>();
         }
 
-        public string Skill { get; set; }
+        public string Skill
+        {
+            get
+            {
+                return this.skill;
+            }
+            set
+            {
+                this.skill = value;
+                this.RaisePropertyChanged(() => this.Skill);
+            }
+        }
 
-        //[MaxLength(250)]
-        public string Content { get; set; }
+        public string Content
+        {
+            get
+            {
+                return this.content;
+            }
+
+            set
+            {
+                this.content = value;
+                this.RaisePropertyChanged(() => this.Content);
+            }
+        }
 
         public int Difficulty { get; set; }
 
@@ -35,6 +57,7 @@
             set
             {
                 this.answers = value;
+                this.RaisePropertyChanged(() => this.Answers);
             }
         }
     }

@@ -7,8 +7,39 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:views="using:UpgradeYourself.Windows.Views"
     mc:Ignorable="d">
+    <ScrollViewer>
+        <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" 
+          VerticalAlignment="Stretch"
+          HorizontalAlignment="Stretch">
+            <Grid.ChildrenTransitions>
+                <TransitionCollection>
+                    <EntranceThemeTransition/>
+                </TransitionCollection>
+            </Grid.ChildrenTransitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <views:PageHeader PageTitleText="Train" Grid.Row="0" Grid.Column="0"></views:PageHeader>
-    </Grid>
+            <!-- Page header -->
+            <views:PageHeader PageTitleText="Train" Grid.Row="0" Grid.Column="0"></views:PageHeader>
+
+            <!-- Page content -->
+            <StackPanel x:Name="ContentRoot" Grid.Row="1" Grid.Column="0">
+                <TextBlock Grid.Row="0" TextWrapping="Wrap" HorizontalAlignment="Center" TextAlignment="Center" Width="250" Margin="10, 20, 20, 20" Style="{StaticResource TextBlockPageTitleStyle}"
+                   Text="{Binding CurrentQuestion.Content}"></TextBlock>
+                <GridView Grid.Row="1" ItemTemplate="{StaticResource TextBlockAnswerTemplate}"
+                      ItemsSource="{Binding CurrentQuestion.Answers}"
+                      Tapped="OnGridViewAnswerItemClick"
+                      HorizontalAlignment="Center">
+                    <ItemsPanelTemplate>
+                        <ItemsWrapGrid MaximumRowsOrColumns="1" />
+                    </ItemsPanelTemplate>
+                </GridView>
+                <TextBlock Name="TextBlockNoAvailableTrainings" Visibility="Collapsed" TextWrapping="Wrap" HorizontalAlignment="Center" TextAlignment="Center" Width="250" Margin="10, 20, 20, 10" Style="{StaticResource TextBlockPageTitleStyle}" 
+                       Text="No available trainings yet"></TextBlock>
+
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
 </Page>

@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using UpgradeYourself.Models.Models;
+using UpgradeYourself.Windows.DataModels;
 using UpgradeYourself.Windows.Services;
 using UpgradeYourself.Windows.ViewModels;
 using Windows.Foundation;
@@ -50,16 +51,11 @@ namespace UpgradeYourself.Windows.Pages
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            // TODO: lock levels -> on certain amount of points -> unlock -> add notification in summary page if a level is unlocked plus button for next level
             string skillName = e.Parameter.ToString();
 
             //TODO: make this show as title -> PageTitleText="{Binding SelectedSkill}" BeginTrainingViewModel
-            this.ViewModel.SelectedSkill = string.Format("Skill: {0}", skillName);
-
-            //var questions = this.GetQuestons(skillName)
-            //    .OrderBy(q => q.Difficulty)
-            //    .GroupBy(q => q.Difficulty)
-            //    .Select(gr => new { Skill = gr.Key, Items = gr.ToList() })
-            //    .ToList();
+            this.ViewModel.SelectedSkill = skillName; //string.Format("Skill: {0}", skillName);
 
             var levels = this.GetLevels(skillName);
 
@@ -86,7 +82,7 @@ namespace UpgradeYourself.Windows.Pages
 
             var level = textBlock.Text.Split(' ')[1];
 
-            this.Frame.Navigate(typeof(TrainingSessionPage), new { Skill = this.ViewModel.SelectedSkill, Level = level });
+            this.Frame.Navigate(typeof(TrainingSessionPage), new SkillLevelDataModel { Skill = this.ViewModel.SelectedSkill, Level = int.Parse(level) });
         }
 
         private ICollection<int> GetLevels(string skillName)
@@ -98,16 +94,6 @@ namespace UpgradeYourself.Windows.Pages
                 .Select(gr => new { Skill = gr.Key, Items = gr.ToList() })
                 .Select(x => x.Skill)
                 .ToList();
-
-            //  var questionsDifficulty = questionService.GetQuestionsInSkillWithDifficulty(skill, 0).ToList();
-
-            //var session = new TrainingSessionViewModel()
-            //{
-            //    Skill = skill.Name,
-            //    Questions = questions
-            //};
-
-            //this.DataContext = session;
         }
     }
 }

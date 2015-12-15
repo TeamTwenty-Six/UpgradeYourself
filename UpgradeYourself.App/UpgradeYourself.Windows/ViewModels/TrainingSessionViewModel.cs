@@ -2,24 +2,70 @@
 {
     using System.Collections.Generic;
 
-    using SQLite;
     using GalaSoft.MvvmLight;    
     
-    //[Table("TrainingSession")]
     public class TrainingSessionViewModel : ViewModelBase
     {
-        private ICollection<QuestionViewModel> questions;
+        private IList<QuestionViewModel> questions;
+        private int currentIndex;
+        private int points;
 
         public TrainingSessionViewModel()
         {
-            this.questions = new HashSet<QuestionViewModel>();
+            this.questions = new List<QuestionViewModel>();
+            this.CurrentQuestion = new QuestionViewModel();
         }
 
         public string Skill { get; set; }
 
-        public int Points { get; set; }
+        public int Level { get; set; }
 
-        public ICollection<QuestionViewModel> Questions
+        public int CurrentIndex
+        {
+            get
+            {
+                return this.currentIndex;
+            }
+            set
+            {
+                this.currentIndex = value;
+                this.RaisePropertyChanged(() => this.CurrentIndex);
+                this.RaisePropertyChanged(() => this.CurrentQuestion);
+            }
+        }
+
+        public QuestionViewModel CurrentQuestion
+        {
+            get
+            {
+                if (this.questions.Count == 0 || this.CurrentIndex == this.questions.Count)
+                {
+                    return null;
+                }
+
+                return this.questions[this.CurrentIndex];
+            }
+            set
+            {             
+                this.RaisePropertyChanged(() => this.CurrentQuestion);
+            }
+        }
+
+        public int Points
+        {
+            get
+            {
+                return this.points;
+            }
+
+            set
+            {
+                this.points = value;
+                this.RaisePropertyChanged(() => this.Points);
+            }
+        }
+
+        public IList<QuestionViewModel> Questions
         {
             get
             {
