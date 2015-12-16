@@ -61,7 +61,7 @@ namespace UpgradeYourself.Windows.Pages
             bool dbExists = await sqliteData.CheckDbAsync(GlobalConstants.DbName);
             if (!dbExists)
             {
-                //await sqliteData.CreateDatabaseAsync<Skill>();
+                await sqliteData.CreateDatabaseAsync<SkillSummary>();
                 await sqliteData.CreateDatabaseAsync<UserProfile>();
                 //await sqliteData.CreateDatabaseAsync<Answer>();
                 //await sqliteData.CreateDatabaseAsync<Question>();
@@ -73,9 +73,9 @@ namespace UpgradeYourself.Windows.Pages
 
             // test - get user profile TODO: remove
 
-            SQLiteAsyncConnection conn = new SQLiteAsyncConnection(GlobalConstants.DbName);
-            var queryProfiles = conn.Table<UserProfile>();
-            var userProfiles = await queryProfiles.ToListAsync();
+            //SQLiteAsyncConnection conn = new SQLiteAsyncConnection(GlobalConstants.DbName);
+            //var queryProfiles = conn.Table<UserProfile>();
+            //var userProfiles = await queryProfiles.ToListAsync();
 
             //var querySkills = conn.Table<Skill>();
             //var skills = await querySkills.ToListAsync();

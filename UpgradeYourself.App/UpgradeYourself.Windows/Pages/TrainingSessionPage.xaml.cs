@@ -93,6 +93,7 @@ namespace UpgradeYourself.Windows.Pages
             {
                 // TODO: save points in user profile
                 // navigate to user profile?
+                // add skill summary page into database - update level and points
                 this.Frame.Navigate(typeof(TrainingSessionSummaryPage), 
                     new TrainingSessionSummaryViewModel { Skill = this.ViewModel.Skill, Level = this.ViewModel.Level, Points = this.ViewModel.Points });
             }
