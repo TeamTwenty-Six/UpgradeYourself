@@ -14,6 +14,7 @@
             <ColumnDefinition />
             <ColumnDefinition Width="200"/>
             <ColumnDefinition />
+            <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <!-- Back button and page title -->
         <Button Grid.Column="0" x:Name="backButton" Margin="0,0,0,0" Command="{Binding SystemNavigationManager.BackRequested, ElementName=pageRoot}"
@@ -24,6 +25,7 @@
                         AutomationProperties.ItemType="Navigation Button"/>
         <TextBlock x:Name="pageTitle" Text="{StaticResource AppName}" Style="{StaticResource TextBlockMainHeaderStyle}" FontSize="16" Grid.Column="1"
                         IsHitTestVisible="false" TextWrapping="NoWrap" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0"/>
-        <HyperlinkButton  Grid.Column="2" Content="Log out" HorizontalAlignment="Right" Margin="0,0,10,0" Click="OnLogOutButtonClick"></HyperlinkButton>
+        <Button Grid.Column="2" Name="RemiderButton"  HorizontalAlignment="Right" Click="OnReminderButtonClicked"></Button>
+        <HyperlinkButton  Grid.Column="3" Content="Log out" HorizontalAlignment="Right" Margin="0,0,10,0" Click="OnLogOutButtonClick"></HyperlinkButton>
     </Grid>
 </UserControl>
