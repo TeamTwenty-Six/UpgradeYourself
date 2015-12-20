@@ -29,12 +29,6 @@ namespace UpgradeYourself.Windows.Views
             this.InitializeComponent();
         }
 
-        private void OnLogOutButtonClick(object sender, RoutedEventArgs e)
-        {
-            ParseUser.LogOut();
-            (Window.Current.Content as Frame).Navigate(typeof(LogInPage));
-        }
-
         private async void OnReminderButtonClicked(object sender, RoutedEventArgs e)
         {
             var notifier = ToastNotificationManager.CreateToastNotifier();
