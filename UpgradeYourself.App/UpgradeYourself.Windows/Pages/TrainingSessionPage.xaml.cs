@@ -125,9 +125,9 @@ namespace UpgradeYourself.Windows.Pages
                 }
 
                 // update
-                userSkillSummary.Points += this.ViewModel.Points;
                 if (userSkillSummary.Level < this.ViewModel.Level)
                 {
+                    userSkillSummary.Points += this.ViewModel.Points;
                     userSkillSummary.Level = this.ViewModel.Level;
                 }
 
@@ -139,8 +139,6 @@ namespace UpgradeYourself.Windows.Pages
                     new TrainingSessionSummaryViewModel { Skill = this.ViewModel.Skill, Level = this.ViewModel.Level, Points = this.ViewModel.Points });
             }
         }
-
-
 
         private IList<QuestionViewModel> GetQuestions(string skillName, int level)
         {

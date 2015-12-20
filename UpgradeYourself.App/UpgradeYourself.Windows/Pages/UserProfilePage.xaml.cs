@@ -56,7 +56,13 @@ namespace UpgradeYourself.Windows.Pages
             var skillSummaryService = new SkillSummaryService();
             var userSkillSummaries = skillSummaryService.GetAllUserSkillSummaries(ParseUser.CurrentUser.Username);
 
-            var a = 5;
+            this.ViewModel.Username = ParseUser.CurrentUser.Username;
+
+            foreach (var skillSummary in userSkillSummaries)
+            {
+                this.ViewModel.AddLevelToSkill(skillSummary.Skill, skillSummary.Level);
+                this.ViewModel.AddPointsToSkill(skillSummary.Skill, skillSummary.Points);
+            }
 
             // TODO get user data for each skill summary page in db via username
         }

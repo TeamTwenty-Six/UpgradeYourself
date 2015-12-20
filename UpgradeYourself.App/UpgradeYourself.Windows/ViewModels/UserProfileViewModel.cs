@@ -11,7 +11,7 @@
         // TODO: map from user? - from summary skill
         public UserProfileViewModel()
         {
-            this.LevelsPassed = new Dictionary<string, List<int>>();
+            this.LastLevelPassed = new Dictionary<string, int>();
             this.Points = new Dictionary<string, int>();
         }
 
@@ -19,18 +19,13 @@
 
         public string Password { get; set; }
 
-        public IDictionary<string, List<int>> LevelsPassed { get; set; }
+        public IDictionary<string, int> LastLevelPassed { get; set; }
 
         public IDictionary<string, int> Points { get; set; }
 
         public void AddLevelToSkill(string skill, int level)
         {
-            if (!this.LevelsPassed.ContainsKey(skill))
-            {
-                this.LevelsPassed[skill] = new List<int>();
-            }
-
-            this.LevelsPassed[skill].Add(level);
+            this.LastLevelPassed[skill] = level;
         }
 
         public void AddPointsToSkill(string skill, int points)
