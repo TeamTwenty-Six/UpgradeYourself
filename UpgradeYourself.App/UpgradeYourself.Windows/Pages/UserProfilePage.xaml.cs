@@ -60,5 +60,11 @@ namespace UpgradeYourself.Windows.Pages
 
             // TODO get user data for each skill summary page in db via username
         }
+
+        private void OnLogOutButtonClick(object sender, RoutedEventArgs e)
+        {
+            ParseUser.LogOut();
+            (Window.Current.Content as Frame).Navigate(typeof(LogInPage));
+        }
     }
 }
