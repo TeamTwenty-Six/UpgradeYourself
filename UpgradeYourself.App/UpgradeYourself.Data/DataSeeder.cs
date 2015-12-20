@@ -23,6 +23,19 @@
             await this.data.AddAsync<UserProfile>(userProfile);
         }
 
+        public async Task SeedSkillSummary()
+        {
+            var skillSummary = new SkillSummary()
+            {
+                Username = "meme",
+                Skill = "JavaScript",
+                Points = 10,
+                Level = 0
+            };
+
+            await this.data.AddAsync<SkillSummary>(skillSummary);
+        }
+
         //public async Task SeedSkills()
         //{
         //    var skills = new List<Skill>
@@ -109,10 +122,10 @@
         //             QuestionId = 2
         //         }
         //     };
-           
+
         //     await this.data.AddMultipleAsync<Answer>(answers);
         // }
-           
+
         // public async Task SeedQuestions()
         // {
         //     var questions = new List<Question>
@@ -130,7 +143,7 @@
         //             AnswersIds = new List<int> { 4, 5, 6 }
         //         }
         //     };
-           
+
         //     await this.data.AddMultipleAsync<Question>(questions);
         // }
     }

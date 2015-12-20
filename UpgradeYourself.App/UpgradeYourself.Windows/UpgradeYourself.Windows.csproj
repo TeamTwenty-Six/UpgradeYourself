@@ -138,6 +138,7 @@
     <Compile Include="ViewModels\QuestionViewModel.cs" />
     <Compile Include="ViewModels\RegisterViewModel.cs" />
     <Compile Include="ViewModels\SkillsListViewModel.cs" />
+    <Compile Include="ViewModels\SkillSummaryViewModel.cs" />
     <Compile Include="ViewModels\SkillViewModel.cs" />
     <Compile Include="ViewModels\TrainingSessionSummaryViewModel.cs" />
     <Compile Include="ViewModels\TrainingSessionViewModel.cs" />

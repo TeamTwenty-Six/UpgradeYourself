@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Parse;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using UpgradeYourself.Models.Models;
 using UpgradeYourself.Windows.DataModels;
 using UpgradeYourself.Windows.Services;
 using UpgradeYourself.Windows.ViewModels;
@@ -101,6 +103,32 @@ namespace UpgradeYourself.Windows.Pages
 
             if (this.ViewModel.CurrentIndex == this.ViewModel.Questions.Count)
             {
+                //// TODO: check
+                //var skillSummaryService = new SkillSummaryService();
+
+                //var userSkillSummary = skillSummaryService.GetUserSkillSummary(ParseUser.CurrentUser.Username, this.ViewModel.Skill);
+
+                //if (userSkillSummary == null)
+                //{
+                //    userSkillSummary = new SkillSummary()
+                //    {
+                //        Username = ParseUser.CurrentUser.Username,
+                //        Skill = this.ViewModel.Skill,
+                //        Points = this.ViewModel.Points,
+                //        Level = this.ViewModel.Level
+                //    };
+
+                //    skillSummaryService.InsertSkillSummary(userSkillSummary);
+                //}
+
+                //// update
+                //userSkillSummary.Points += this.ViewModel.Points;
+                //if (userSkillSummary.Level < this.ViewModel.Level)
+                //{
+                //    userSkillSummary.Level = this.ViewModel.Level;
+                //    skillSummaryService.UpdateSkillSummary(userSkillSummary);
+                //}
+
                 // TODO: save points in user profile
                 // navigate to user profile?
                 // add skill summary page into database - update level and points
