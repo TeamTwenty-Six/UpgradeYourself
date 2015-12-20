@@ -62,7 +62,7 @@ namespace UpgradeYourself.Windows.Pages
                 this.TextBlockNoAvailableTrainings.Visibility = Visibility.Visible;
                 return;
             }
-
+            
             this.ViewModel.Questions = questions;
             this.ViewModel.CurrentIndex = 0;
             //this.ViewModel.CurrentQuestion = this.ViewModel.Questions[0];
@@ -87,6 +87,16 @@ namespace UpgradeYourself.Windows.Pages
             {
                 // TODO : display points
                 this.ViewModel.Points += 10;
+                this.AnswerStatusCorrect.Text = string.Format("Weldone, you are correct! +{0} points", ViewModel.Points);
+                this.AnswerStatusCorrect.Visibility = Visibility.Visible;
+                Hide();
+            }
+            else
+            {
+                this.ViewModel.Points += 0;
+                this.AnswerStatusWrong.Text = string.Format("Sorry, this is not the correct answer. {0} points", ViewModel.Points);
+                this.AnswerStatusWrong.Visibility = Visibility.Visible;
+                Hide();
             }
 
             this.ViewModel.CurrentIndex++;
@@ -122,10 +132,12 @@ namespace UpgradeYourself.Windows.Pages
                 // TODO: save points in user profile
                 // navigate to user profile?
                 // add skill summary page into database - update level and points
-                this.Frame.Navigate(typeof(TrainingSessionSummaryPage), 
+                this.Frame.Navigate(typeof(TrainingSessionSummaryPage),
                     new TrainingSessionSummaryViewModel { Skill = this.ViewModel.Skill, Level = this.ViewModel.Level, Points = this.ViewModel.Points });
             }
         }
+
+        
 
         private IList<QuestionViewModel> GetQuestions(string skillName, int level)
         {
@@ -133,6 +145,32 @@ namespace UpgradeYourself.Windows.Pages
             return questionService.GetQuestionsInSkill(skillName)
                 .Where(q => q.Skill == skillName && q.Difficulty == level)
                 .ToList();
+        }
+
+        private void Question_Holding(object sender, HoldingRoutedEventArgs e)
+        {        
+            this.Hint.Visibility = Visibility.Visible;
+            Hide();
+        }
+
+        private void Hint_Holding(object sender, HoldingRoutedEventArgs e)
+        {
+            this.Hint.Visibility = Visibility.Collapsed;
+        }
+
+        private void Hide()
+        {
+            DispatcherTimer timer = new DispatcherTimer();
+            timer.Interval = new TimeSpan(0, 0, 0, 100);
+            timer.Tick += Timer_Tick;
+            timer.Start();
+        }
+
+        private void Timer_Tick(object sender, object e)
+        {
+            AnswerStatusWrong.Visibility = Visibility.Collapsed;
+            AnswerStatusCorrect.Visibility = Visibility.Collapsed;
+            Hint.Visibility = Visibility.Collapsed;           
         }
     }
 }

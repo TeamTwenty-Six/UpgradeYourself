@@ -11,6 +11,7 @@
     <Page.Resources>
         <Style TargetType="TextBlock" BasedOn="{StaticResource TextBlockPageTitleStyle}" />
     </Page.Resources>
+    
     <ScrollViewer Grid.Row="1" Grid.Column="0">
         <StackPanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" HorizontalAlignment="Center">
             <views:PageHeader PageTitleText="{Binding SelectedSkill}" Grid.Row="0" Grid.Column="0"></views:PageHeader>

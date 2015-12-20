@@ -113,11 +113,6 @@
     <EmbeddedResource Include="Properties\UpgradeYourself.Data.rd.xml" />
   </ItemGroup>
   <ItemGroup>
-    <SDKReference Include="SQLite.UAP.2015, Version=3.8.11.1">
-      <Name>SQLite for Universal App Platform</Name>
-    </SDKReference>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\UpgradeYourself.Common\UpgradeYourself.Common.csproj">
       <Project>{a4196853-0660-496f-8c45-f10f2310dbbd}</Project>
       <Name>UpgradeYourself.Common</Name>

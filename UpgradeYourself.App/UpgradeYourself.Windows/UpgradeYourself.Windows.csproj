@@ -100,6 +100,8 @@
     </Compile>
     <Compile Include="Common\DelegateCommand.cs" />
     <Compile Include="DataModels\SkillLevelDataModel.cs" />
+    <Compile Include="NavPane\NavMenuItem.cs" />
+    <Compile Include="NavPane\NavMenuListView.cs" />
     <Compile Include="Pages\LogInPage.xaml.cs">
       <DependentUpon>LogInPage.xaml</DependentUpon>
     </Compile>
@@ -155,6 +157,7 @@
     <None Include="UpgradeYourself.Windows_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\BadgeLogo.scale-100.png" />
     <Content Include="Assets\Imgs\icon-csharp.png" />
     <Content Include="Assets\Imgs\icon-css.png" />
     <Content Include="Assets\Imgs\icon-java.png" />
@@ -222,6 +225,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\UpgradeYourself.BackgroundTask\UpgradeYourself.BackgroundTask.csproj">
+      <Project>{4543f887-7247-4ade-af6b-8f7150177c7d}</Project>
+      <Name>UpgradeYourself.BackgroundTask</Name>
+    </ProjectReference>
     <ProjectReference Include="..\UpgradeYourself.Common\UpgradeYourself.Common.csproj">
       <Project>{a4196853-0660-496f-8c45-f10f2310dbbd}</Project>
       <Name>UpgradeYourself.Common</Name>
