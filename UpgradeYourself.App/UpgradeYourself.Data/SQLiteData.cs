@@ -63,6 +63,12 @@
             return query.ToListAsync().Result.FirstOrDefault();
         }
 
+        public ICollection<T> AllAsync<T>() where T : BaseModel, new()
+        {
+            AsyncTableQuery<T> query = this.conn.Table<T>();
+            return query.ToListAsync().Result;
+        }
+
         public async Task DeleteAsync<T>(T model) where T : BaseModel, new()
         {
             var item = await this.conn.Table<T>().Where(x => x.Id == model.Id).FirstOrDefaultAsync();

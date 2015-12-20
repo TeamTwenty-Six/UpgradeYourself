@@ -46,10 +46,12 @@
                            Holding="Hint_Holding"/>
                 <TextBlock Name="AnswerStatusCorrect"  
                            Visibility="Collapsed"
-                           Style="{StaticResource StatusStyle}"></TextBlock>
+                           Style="{StaticResource StatusStyle}"
+                           Width="250"></TextBlock>
                 <TextBlock Name="AnswerStatusWrong"  
                            Visibility="Collapsed"
-                           Style="{StaticResource ErrorStyle}"></TextBlock>
+                           Style="{StaticResource ErrorStyle}"
+                           Width="250"></TextBlock>
                 <TextBlock Name="TextBlockNoAvailableTrainings" Visibility="Collapsed" TextWrapping="Wrap" HorizontalAlignment="Center" TextAlignment="Center" Width="250" Margin="10, 20, 20, 10" Style="{StaticResource TextBlockPageTitleStyle}" 
                        Text="No available trainings yet"></TextBlock>
                 

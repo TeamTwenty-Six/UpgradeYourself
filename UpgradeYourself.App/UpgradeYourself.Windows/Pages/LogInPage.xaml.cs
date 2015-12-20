@@ -78,9 +78,9 @@ namespace UpgradeYourself.Windows.Pages
             }
             else
             {
+                this.progressRing.Visibility = Visibility.Collapsed;
 
                 bool isLoggedIn = await ViewModel.Login();
-                this.progressRing.Visibility = Visibility.Collapsed;
                 if (isLoggedIn)
                 {
                     this.Frame.Navigate(typeof(SkillsPage));

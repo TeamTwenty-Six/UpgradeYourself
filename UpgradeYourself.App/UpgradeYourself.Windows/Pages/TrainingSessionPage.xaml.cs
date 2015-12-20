@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using UpgradeYourself.Data;
 using UpgradeYourself.Models.Models;
 using UpgradeYourself.Windows.DataModels;
 using UpgradeYourself.Windows.Services;
@@ -27,6 +28,8 @@ namespace UpgradeYourself.Windows.Pages
     /// </summary>
     public sealed partial class TrainingSessionPage : Page
     {
+        private SQLiteData sqliteData;
+
         public TrainingSessionPage()
             : this(new TrainingSessionViewModel())
         {
@@ -36,6 +39,7 @@ namespace UpgradeYourself.Windows.Pages
         {
             this.InitializeComponent();
             this.ViewModel = viewModel;
+            this.sqliteData = new SQLiteData();
         }
 
         public TrainingSessionViewModel ViewModel
@@ -62,7 +66,7 @@ namespace UpgradeYourself.Windows.Pages
                 this.TextBlockNoAvailableTrainings.Visibility = Visibility.Visible;
                 return;
             }
-            
+
             this.ViewModel.Questions = questions;
             this.ViewModel.CurrentIndex = 0;
             //this.ViewModel.CurrentQuestion = this.ViewModel.Questions[0];
@@ -87,7 +91,7 @@ namespace UpgradeYourself.Windows.Pages
             {
                 // TODO : display points
                 this.ViewModel.Points += 10;
-                this.AnswerStatusCorrect.Text = string.Format("Weldone, you are correct! +{0} points", ViewModel.Points);
+                this.AnswerStatusCorrect.Text = string.Format("Well done, you are correct! +{0} points", ViewModel.Points);
                 this.AnswerStatusCorrect.Visibility = Visibility.Visible;
                 Hide();
             }
@@ -103,41 +107,40 @@ namespace UpgradeYourself.Windows.Pages
 
             if (this.ViewModel.CurrentIndex == this.ViewModel.Questions.Count)
             {
-                //// TODO: check
-                //var skillSummaryService = new SkillSummaryService();
+                var skillSummaryService = new SkillSummaryService();
 
-                //var userSkillSummary = skillSummaryService.GetUserSkillSummary(ParseUser.CurrentUser.Username, this.ViewModel.Skill);
+                var userSkillSummary = skillSummaryService.GetUserSkillSummary(ParseUser.CurrentUser.Username, this.ViewModel.Skill);
 
-                //if (userSkillSummary == null)
-                //{
-                //    userSkillSummary = new SkillSummary()
-                //    {
-                //        Username = ParseUser.CurrentUser.Username,
-                //        Skill = this.ViewModel.Skill,
-                //        Points = this.ViewModel.Points,
-                //        Level = this.ViewModel.Level
-                //    };
+                if (userSkillSummary == null)
+                {
+                    userSkillSummary = new SkillSummary()
+                    {
+                        Username = ParseUser.CurrentUser.Username,
+                        Skill = this.ViewModel.Skill,
+                        Points = this.ViewModel.Points,
+                        Level = this.ViewModel.Level
+                    };
 
-                //    skillSummaryService.InsertSkillSummary(userSkillSummary);
-                //}
+                    skillSummaryService.InsertSkillSummary(userSkillSummary);
+                }
 
-                //// update
-                //userSkillSummary.Points += this.ViewModel.Points;
-                //if (userSkillSummary.Level < this.ViewModel.Level)
-                //{
-                //    userSkillSummary.Level = this.ViewModel.Level;
-                //    skillSummaryService.UpdateSkillSummary(userSkillSummary);
-                //}
+                // update
+                userSkillSummary.Points += this.ViewModel.Points;
+                if (userSkillSummary.Level < this.ViewModel.Level)
+                {
+                    userSkillSummary.Level = this.ViewModel.Level;
+                }
+
+                skillSummaryService.UpdateSkillSummary(userSkillSummary);
 
                 // TODO: save points in user profile
                 // navigate to user profile?
-                // add skill summary page into database - update level and points
                 this.Frame.Navigate(typeof(TrainingSessionSummaryPage),
                     new TrainingSessionSummaryViewModel { Skill = this.ViewModel.Skill, Level = this.ViewModel.Level, Points = this.ViewModel.Points });
             }
         }
 
-        
+
 
         private IList<QuestionViewModel> GetQuestions(string skillName, int level)
         {
@@ -148,7 +151,7 @@ namespace UpgradeYourself.Windows.Pages
         }
 
         private void Question_Holding(object sender, HoldingRoutedEventArgs e)
-        {        
+        {
             this.Hint.Visibility = Visibility.Visible;
             Hide();
         }
@@ -170,7 +173,7 @@ namespace UpgradeYourself.Windows.Pages
         {
             AnswerStatusWrong.Visibility = Visibility.Collapsed;
             AnswerStatusCorrect.Visibility = Visibility.Collapsed;
-            Hint.Visibility = Visibility.Collapsed;           
+            Hint.Visibility = Visibility.Collapsed;
         }
     }
 }
