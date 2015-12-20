@@ -9,6 +9,7 @@ using UpgradeYourself.Data;
 using UpgradeYourself.Models.Models;
 using UpgradeYourself.Windows.Services;
 using UpgradeYourself.Windows.ViewModels;
+using UpgradeYourself.BackgroundTask;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -18,6 +19,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Windows.ApplicationModel.Background;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -82,7 +84,35 @@ namespace UpgradeYourself.Windows.Pages
 
             // show user
             //this.DataContext = userProfiles.FirstOrDefault();
+
+            this.RegisterBackgroundTask();
         }
+
+        private const string taskName = "LiveTileBackgroundTask";
+        private const string taskEntryPoint = "UpgradeYourself.BackgroundTask.LiveTileBackgroundTask";
+
+        private async void RegisterBackgroundTask()
+        {
+            var backgroundAccessStatus = await BackgroundExecutionManager.RequestAccessAsync();
+            if (backgroundAccessStatus == BackgroundAccessStatus.AllowedMayUseActiveRealTimeConnectivity ||
+                backgroundAccessStatus == BackgroundAccessStatus.AllowedWithAlwaysOnRealTimeConnectivity)
+            {
+                foreach (var task in BackgroundTaskRegistration.AllTasks)
+                {
+                    if (task.Value.Name == taskName)
+                    {
+                        task.Value.Unregister(true);
+                    }
+                }
+
+                BackgroundTaskBuilder taskBuilder = new BackgroundTaskBuilder();
+                taskBuilder.Name = taskName;
+                taskBuilder.TaskEntryPoint = taskEntryPoint;
+                taskBuilder.SetTrigger(new TimeTrigger(15, false));
+                var registration = taskBuilder.Register();
+            }
+        }
+    
 
         //private void GetTrainingSession(Skill skill)
         //{

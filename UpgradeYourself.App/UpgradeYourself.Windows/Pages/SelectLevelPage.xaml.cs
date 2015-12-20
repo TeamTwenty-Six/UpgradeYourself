@@ -72,6 +72,7 @@ namespace UpgradeYourself.Windows.Pages
 
         private void OnGridViewLevelItemClick(object sender, RoutedEventArgs e)
         {
+            
             var textBlock = e.OriginalSource as TextBlock;
             if (textBlock == null)
             {
@@ -83,6 +84,7 @@ namespace UpgradeYourself.Windows.Pages
             var level = textBlock.Text.Split(' ')[1];
 
             this.Frame.Navigate(typeof(TrainingSessionPage), new SkillLevelDataModel { Skill = this.ViewModel.SelectedSkill, Level = int.Parse(level) });
+            
         }
 
         private ICollection<int> GetLevels(string skillName)

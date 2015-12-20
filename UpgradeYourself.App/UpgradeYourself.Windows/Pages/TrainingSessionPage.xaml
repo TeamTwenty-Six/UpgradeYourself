@@ -7,6 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:views="using:UpgradeYourself.Windows.Views"
     mc:Ignorable="d">
+    
     <ScrollViewer>
         <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" 
           VerticalAlignment="Stretch"
@@ -26,8 +27,11 @@
 
             <!-- Page content -->
             <StackPanel x:Name="ContentRoot" Grid.Row="1" Grid.Column="0">
-                <TextBlock Grid.Row="0" TextWrapping="Wrap" HorizontalAlignment="Center" TextAlignment="Center" Width="250" Margin="10, 20, 20, 20" Style="{StaticResource TextBlockPageTitleStyle}"
-                   Text="{Binding CurrentQuestion.Content}"></TextBlock>
+                <TextBlock Name="Question" Grid.Row="0" TextWrapping="Wrap" HorizontalAlignment="Center" 
+                           TextAlignment="Center" Width="250" Margin="10, 20, 20, 20" 
+                           Style="{StaticResource TextBlockPageTitleStyle}"
+                           Text="{Binding CurrentQuestion.Content}"
+                           Holding="Question_Holding"></TextBlock>
                 <GridView Grid.Row="1" ItemTemplate="{StaticResource TextBlockAnswerTemplate}"
                       ItemsSource="{Binding CurrentQuestion.Answers}"
                       Tapped="OnGridViewAnswerItemClick"
@@ -36,9 +40,19 @@
                         <ItemsWrapGrid MaximumRowsOrColumns="1" />
                     </ItemsPanelTemplate>
                 </GridView>
+                <TextBlock Name="Hint" Text="{Binding CurrentQuestion.Hint}" 
+                           Visibility="Collapsed" HorizontalAlignment="Center"
+                           TextAlignment="Center" TextWrapping="Wrap" Width="250"
+                           Holding="Hint_Holding"/>
+                <TextBlock Name="AnswerStatusCorrect"  
+                           Visibility="Collapsed"
+                           Style="{StaticResource StatusStyle}"></TextBlock>
+                <TextBlock Name="AnswerStatusWrong"  
+                           Visibility="Collapsed"
+                           Style="{StaticResource ErrorStyle}"></TextBlock>
                 <TextBlock Name="TextBlockNoAvailableTrainings" Visibility="Collapsed" TextWrapping="Wrap" HorizontalAlignment="Center" TextAlignment="Center" Width="250" Margin="10, 20, 20, 10" Style="{StaticResource TextBlockPageTitleStyle}" 
                        Text="No available trainings yet"></TextBlock>
-
+                
             </StackPanel>
         </Grid>
     </ScrollViewer>
