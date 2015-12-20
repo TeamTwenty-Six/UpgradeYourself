@@ -6,6 +6,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using UpgradeYourself.Windows.ViewModels;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -23,6 +24,8 @@ namespace UpgradeYourself.Windows.Pages
     /// </summary>
     public sealed partial class LogInPage : Page
     {
+        private const string InputErrorMessage = "All fields are required.";
+
         public LogInPage()
             : this(new LoginPageViewModel())
         {
@@ -65,16 +68,34 @@ namespace UpgradeYourself.Windows.Pages
                 return;
             }
 
-            bool isLoggedIn = await ViewModel.Login();
-            if (isLoggedIn)
+            this.progressRing.Visibility = Visibility.Visible;
+            bool isInputValid = this.ViewModel.ValidateInput();
+            if (!isInputValid)
             {
-                this.Frame.Navigate(typeof(SkillsPage));
+                this.progressRing.Visibility = Visibility.Collapsed;
+                this.ShowInfoMessage(InputErrorMessage);
+                return;
             }
             else
             {
-                this.LoginFailed.Visibility = Visibility.Visible;
+
+                bool isLoggedIn = await ViewModel.Login();
+                this.progressRing.Visibility = Visibility.Collapsed;
+                if (isLoggedIn)
+                {
+                    this.Frame.Navigate(typeof(SkillsPage));
+                }
+                else
+                {
+                    this.LoginFailed.Visibility = Visibility.Visible;
+                }
             }
-            
+        }
+
+        private async void ShowInfoMessage(string message)
+        {
+            var dialog = new MessageDialog(message);
+            await dialog.ShowAsync();
         }
     }
 }

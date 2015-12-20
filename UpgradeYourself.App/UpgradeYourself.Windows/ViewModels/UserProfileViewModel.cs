@@ -5,7 +5,7 @@
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
-
+    using UpgradeYourself.Common;
     public class UserProfileViewModel
     {
         // TODO: map from user? - from summary skill

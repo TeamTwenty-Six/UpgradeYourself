@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UpgradeYourself.Common;
 using UpgradeYourself.Models.Models;
 
 namespace UpgradeYourself.Windows.ViewModels
@@ -17,6 +18,21 @@ namespace UpgradeYourself.Windows.ViewModels
         }
 
         public UserProfile User { get; set; }
+
+        public bool ValidateInput()
+        {
+            if (!InputValidator.ValidateRegularTextInput(this.User.Username))
+            {
+                return false;
+            }
+
+            if (!InputValidator.ValidatePasswordTextInput(this.User.Password))
+            {
+                return false;
+            }
+
+            return true;
+        }
 
         public async Task<bool> Login()
         {
