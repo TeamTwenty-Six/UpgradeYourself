@@ -53,7 +53,10 @@ namespace UpgradeYourself.Windows.Pages
             var userProfileService = new UserProfileService();
             var profiles = userProfileService.GetCurrentUserProfile(ParseUser.CurrentUser.Username);
 
-            
+            var skillSummaryService = new SkillSummaryService();
+            var userSkillSummaries = skillSummaryService.GetAllUserSkillSummaries(ParseUser.CurrentUser.Username);
+
+            var a = 5;
 
             // TODO get user data for each skill summary page in db via username
         }

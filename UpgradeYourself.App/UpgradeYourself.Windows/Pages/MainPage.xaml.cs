@@ -54,9 +54,10 @@ namespace UpgradeYourself.Windows.Pages
         {
             // drop tables to test
             // await this.sqliteData.DropTableAsync<UserProfile>();
-            // await this.sqliteData.DropTableAsync<Skill>();
+            // await this.sqliteData.DropTableAsync<SkillSummary>();
 
             // Create Db if not exist
+            this.progressRing.Visibility = Visibility.Visible;
 
             bool dbExists = await sqliteData.CheckDbAsync(GlobalConstants.DbName);
             if (!dbExists)
@@ -68,20 +69,24 @@ namespace UpgradeYourself.Windows.Pages
                 //await sqliteData.CreateDatabaseAsync<TrainingSession>();
 
                 await dataSeeder.SeedUserProfile();
+                await dataSeeder.SeedSkillSummary();
                 //await dataSeeder.SeedSkills();
             }
 
+            
             // test - get user profile TODO: remove
 
-            //SQLiteAsyncConnection conn = new SQLiteAsyncConnection(GlobalConstants.DbName);
-            //var queryProfiles = conn.Table<UserProfile>();
-            //var userProfiles = await queryProfiles.ToListAsync();
+            SQLiteAsyncConnection conn = new SQLiteAsyncConnection(GlobalConstants.DbName);
+            var queryProfiles = conn.Table<UserProfile>();
+            var userProfiles = await queryProfiles.ToListAsync();
 
-            //var querySkills = conn.Table<Skill>();
-            //var skills = await querySkills.ToListAsync();
-
+            var querySkills = conn.Table<SkillSummary>();
+            var skills = await querySkills.ToListAsync();
+            //this.Frame.Navigate(typeof(SkillsPage));
             // show user
             //this.DataContext = userProfiles.FirstOrDefault();
+
+            this.progressRing.Visibility = Visibility.Collapsed;
         }
 
         //private void GetTrainingSession(Skill skill)
