@@ -13,5 +13,7 @@
         public int Level { get; set; }
 
         public int Points { get; set; }
+
+        public int NumberOfQuestions { get; set; }
     }
 }

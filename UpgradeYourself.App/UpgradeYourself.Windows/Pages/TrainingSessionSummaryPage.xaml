@@ -26,6 +26,7 @@
             <views:PageHeader PageTitleText="Summary" Grid.Row="0" Grid.Column="0"></views:PageHeader>
 
             <!-- Page content -->
+            
             <StackPanel x:Name="ContentRoot" Grid.Row="1" Grid.Column="0">
                 <!--<TextBlock HorizontalAlignment="Center" TextAlignment="Center" Width="250" Margin="10, 20, 20, 10" Style="{StaticResource TextBlockPageTitleStyle}"
                    Text="Skill"></TextBlock>-->
@@ -39,7 +40,18 @@
                    Text="Points"></TextBlock>
                 <TextBlock HorizontalAlignment="Center" TextAlignment="Center" Width="250" Margin="10, 20, 20, 10" Style="{StaticResource TextBlockPageTitleStyle}"
                    Text="{Binding Points}" FontSize="60"></TextBlock>
-                <Button Margin="10" HorizontalAlignment="Center" Width="250" Content="Train More" Style="{StaticResource ButtonMainStyle}" Click="OnTrainMoreButtonClick" />
+                
+                <Button Name="TrainMore" Margin="10" Visibility="Collapsed" HorizontalAlignment="Center" Width="250" 
+                        Content="Train More" Style="{StaticResource ButtonMainStyle}" Click="OnTrainMoreButtonClick" />
+                <Canvas Name="Congrats" Width="320" Height="150" Background="Transparent"
+                        Visibility="Collapsed"
+                        ManipulationStarted="Congrats_ManipulationStarted"
+                        ManipulationDelta="Congrats_ManipulationDelta"
+                        ManipulationCompleted="Congrats_ManipulationCompleted"
+                        ManipulationMode="All">
+                    <TextBlock Text="Congratulations! &#x1F60A; You passed the level!" Foreground="Cyan" 
+                           FontWeight="Bold" FontSize="30" Margin="15, 20, 10, 15" TextWrapping="Wrap" Width="320" />
+                </Canvas>
             </StackPanel>
         </Grid>
     </ScrollViewer>

@@ -54,7 +54,6 @@ namespace UpgradeYourself.Windows.Pages
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
             // drop tables to test
-            // await this.sqliteData.DropTableAsync<UserProfile>();
             // await this.sqliteData.DropTableAsync<SkillSummary>();
 
             // Create Db if not exist
@@ -65,30 +64,12 @@ namespace UpgradeYourself.Windows.Pages
             {
                 await sqliteData.CreateDatabaseAsync<SkillSummary>();
                 await sqliteData.CreateDatabaseAsync<UserProfile>();
-                //await sqliteData.CreateDatabaseAsync<Answer>();
-                //await sqliteData.CreateDatabaseAsync<Question>();
-                //await sqliteData.CreateDatabaseAsync<TrainingSession>();
 
                 await dataSeeder.SeedUserProfile();
                 await dataSeeder.SeedSkillSummary();
-                //await dataSeeder.SeedSkills();
             }
-
-
-            // test - get user profile TODO: remove
-
-            //SQLiteAsyncConnection conn = new SQLiteAsyncConnection(GlobalConstants.DbName);
-            //var queryProfiles = conn.Table<UserProfile>();
-            //var userProfiles = await queryProfiles.ToListAsync();
-
-            //var querySkills = conn.Table<SkillSummary>();
-            //var skills = await querySkills.ToListAsync();
-            //this.Frame.Navigate(typeof(SkillsPage));
-            // show user
-            //this.DataContext = userProfiles.FirstOrDefault();
-
+            
             this.progressRing.Visibility = Visibility.Collapsed;
-
             this.RegisterBackgroundTask();
         }
 
@@ -116,26 +97,5 @@ namespace UpgradeYourself.Windows.Pages
                 var registration = taskBuilder.Register();
             }
         }
-    
-
-        //private void GetTrainingSession(Skill skill)
-        //{
-        //    var questionService = new QuestionService();
-        //    var questions = questionService.GetQuestionsInSkill(skill).ToList();
-        //    var questionsDifficulty = questionService.GetQuestionsInSkillWithDifficulty(skill, 0).ToList();
-
-        //    var session = new TrainingSessionViewModel()
-        //    {
-        //        Skill = skill.Name,
-        //        Questions = questions
-        //    };
-
-        //    this.DataContext = session;
-        //}
-
-        //private void Navigate(object sender, RoutedEventArgs e)
-        //{
-        //    this.Frame.Navigate(typeof(TestPage));
-        //}
     }
 }

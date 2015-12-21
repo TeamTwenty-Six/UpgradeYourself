@@ -53,7 +53,6 @@ namespace UpgradeYourself.Windows.Pages
         {
             // TODO: lock levels -> on certain amount of points -> unlock -> add notification in summary page if a level is unlocked plus button for next level
             // TODO: button levels - if in players dictionary <skill.name, hashset<int> levels> - grey color
-
             string skillName = e.Parameter.ToString();
 
             //TODO: make this show as title -> PageTitleText="{Binding SelectedSkill}" BeginTrainingViewModel

@@ -26,7 +26,6 @@ namespace UpgradeYourself.Windows.Pages
         public RegisterPage()
         {
             this.InitializeComponent();
-            //this.ViewModel = new RegisterViewModel();
         }
 
         public RegisterViewModel ViewModel
@@ -49,7 +48,6 @@ namespace UpgradeYourself.Windows.Pages
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             this.ViewModel = e.Parameter as RegisterViewModel;
-            //this.DataContext = e.Parameter;
         }
 
         private async void OnRegisterButtonClick(object sender, RoutedEventArgs e)

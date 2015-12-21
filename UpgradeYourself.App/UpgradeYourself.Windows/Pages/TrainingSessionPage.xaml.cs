@@ -145,7 +145,7 @@ namespace UpgradeYourself.Windows.Pages
                 // TODO: save points in user profile
                 // navigate to user profile?
                 this.Frame.Navigate(typeof(TrainingSessionSummaryPage),
-                    new TrainingSessionSummaryViewModel { Skill = this.ViewModel.Skill, Level = this.ViewModel.Level, Points = this.ViewModel.Points });
+                    new TrainingSessionSummaryViewModel { Skill = this.ViewModel.Skill, Level = this.ViewModel.Level, Points = this.ViewModel.Points, NumberOfQuestions = this.ViewModel.Questions.Count });
             }
         }
 
