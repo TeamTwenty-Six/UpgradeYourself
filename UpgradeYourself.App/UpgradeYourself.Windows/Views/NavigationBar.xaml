@@ -43,7 +43,7 @@
             </SplitView.Content>-->
         </SplitView>
         <TextBlock Grid.Column="1" x:Name="pageTitle" Text="{StaticResource AppName}" Style="{StaticResource TextBlockMainHeaderStyle}" FontSize="16" 
-                        IsHitTestVisible="false" TextWrapping="NoWrap" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0"/>
+                        IsHitTestVisible="false" TextWrapping="NoWrap" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,15,0"/>
         <Button Grid.Column="2" Name="RemiderButton"  HorizontalAlignment="Right" Click="OnReminderButtonClicked"></Button>
         
     </Grid>

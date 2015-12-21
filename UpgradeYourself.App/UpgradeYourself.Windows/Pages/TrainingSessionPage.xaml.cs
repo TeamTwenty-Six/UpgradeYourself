@@ -217,5 +217,10 @@ namespace UpgradeYourself.Windows.Pages
                 new MessageDialog("For hint long tap/hold on the question.").ShowAsync();
             });          
         }
+
+        private void Shake(object sender, RoutedEventArgs args)
+        {
+            OnShake(null, null);
+        }
     }
 }

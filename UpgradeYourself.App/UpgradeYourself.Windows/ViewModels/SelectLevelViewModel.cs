@@ -26,9 +26,7 @@ namespace UpgradeYourself.Windows.ViewModels
 
             set
             {
-                // todo
                 this.levels = value;
-                //this.RaisePropertyChanged(() => this.SelectedSkill);
             }
         }
 

@@ -1,13 +1,9 @@
-﻿using Parse;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UpgradeYourself.Models.Models;
-
-namespace UpgradeYourself.Windows.ViewModels
+﻿namespace UpgradeYourself.Windows.ViewModels
 {
+    using Parse;
+    using System;
+    using System.Threading.Tasks;
+
     public class RegisterViewModel : MainPageViewModel
     {
         public string Username { get; set; }

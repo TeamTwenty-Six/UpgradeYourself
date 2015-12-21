@@ -56,8 +56,6 @@ namespace UpgradeYourself.Windows.Pages
         /// This parameter is typically used to configure the page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            //this.ViewModel = e.Parameter as LoginPageViewModel;
-            //this.DataContext = e.Parameter;
         }
 
         private async void OnLoginButtonClick(object sender, RoutedEventArgs e)

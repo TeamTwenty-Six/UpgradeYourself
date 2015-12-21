@@ -1,15 +1,12 @@
-﻿using GalaSoft.MvvmLight;
-using Parse;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UpgradeYourself.Common;
-using UpgradeYourself.Models.Models;
-
-namespace UpgradeYourself.Windows.ViewModels
+﻿namespace UpgradeYourself.Windows.ViewModels
 {
+    using GalaSoft.MvvmLight;
+    using Parse;
+    using System;
+    using System.Threading.Tasks;
+    using UpgradeYourself.Common;
+    using UpgradeYourself.Models.Models;
+
     public class LoginPageViewModel : MainPageViewModel
     {
         public LoginPageViewModel()

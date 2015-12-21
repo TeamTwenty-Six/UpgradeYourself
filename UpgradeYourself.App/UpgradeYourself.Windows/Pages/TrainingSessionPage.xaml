@@ -31,7 +31,7 @@
                            TextAlignment="Center" Width="250" Margin="10, 20, 20, 20" 
                            Style="{StaticResource TextBlockPageTitleStyle}"
                            Text="{Binding CurrentQuestion.Content}"
-                           Holding="Question_Holding"></TextBlock>
+                           Holding="Question_Holding" Tapped="Shake"></TextBlock>
                 <GridView Grid.Row="1" ItemTemplate="{StaticResource TextBlockAnswerTemplate}"
                       ItemsSource="{Binding CurrentQuestion.Answers}"
                       DoubleTapped="OnGridViewAnswerItemClick"

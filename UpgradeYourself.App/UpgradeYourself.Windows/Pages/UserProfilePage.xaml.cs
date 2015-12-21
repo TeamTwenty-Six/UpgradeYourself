@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
+using UpgradeYourself.Models.Models;
 using UpgradeYourself.Windows.Services;
 using UpgradeYourself.Windows.ViewModels;
 using Windows.Devices.Geolocation;
@@ -63,19 +64,23 @@ namespace UpgradeYourself.Windows.Pages
 
             this.ViewModel.Username = ParseUser.CurrentUser.Username;
 
-            foreach (var skillSummary in userSkillSummaries)
-            {
-                this.ViewModel.AddLevelToSkill(skillSummary.Skill, skillSummary.Level);
-                this.ViewModel.AddPointsToSkill(skillSummary.Skill, skillSummary.Points);
-            }
-
-            // TODO get user data for each skill summary page in db via username
+            this.GetSkillSummaryInfo(userSkillSummaries);
         }
 
         private void OnLogOutButtonClick(object sender, RoutedEventArgs e)
         {
             ParseUser.LogOut();
             (Window.Current.Content as Frame).Navigate(typeof(LogInPage));
+        }
+
+        private void GetSkillSummaryInfo(ICollection<SkillSummary> userSkillSummaries)
+        {
+            // TODO map to viewmodel
+            foreach (var skillSummary in userSkillSummaries)
+            {
+                this.ViewModel.AddLevelToSkill(skillSummary.Skill, skillSummary.Level);
+                this.ViewModel.AddPointsToSkill(skillSummary.Skill, skillSummary.Points);
+            }
         }
 
         private async void Locate()

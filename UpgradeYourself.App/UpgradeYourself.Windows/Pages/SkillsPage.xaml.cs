@@ -66,14 +66,6 @@ namespace UpgradeYourself.Windows.Pages
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            //SQLiteAsyncConnection conn = new SQLiteAsyncConnection(GlobalConstants.DbName);
-            //var querySkills = conn.Table<Skill>();
-            //var skills = querySkills.ToListAsync().Result;
-
-            //this.ViewModel.Skills = skills.AsQueryable()
-            //    .Select(SkillViewModel.FromSkill)
-            //    .ToList();
-
             this.ViewModel.Skills = this.GetSkills();
         }
 
@@ -83,16 +75,6 @@ namespace UpgradeYourself.Windows.Pages
 
             return skillService.GetSkills()
                 .ToList();
-
-            //  var questionsDifficulty = questionService.GetQuestionsInSkillWithDifficulty(skill, 0).ToList();
-
-            //var session = new TrainingSessionViewModel()
-            //{
-            //    Skill = skill.Name,
-            //    Questions = questions
-            //};
-
-            //this.DataContext = session;
         }
     }
 }
