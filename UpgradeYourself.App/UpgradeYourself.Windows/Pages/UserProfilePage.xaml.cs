@@ -87,22 +87,23 @@ namespace UpgradeYourself.Windows.Pages
 
         private async Task<string> GetLocation()
         {
-            string text = string.Empty;
+            string result = string.Empty;
 
-            //var geo = new Geolocator();
-            //Geoposition pos = await geo.GetGeopositionAsync();
-            //text += "Latitude: " + pos.Coordinate.Point.Position.Latitude.ToString() + "; ";
-            //text += "Longitude: " + pos.Coordinate.Point.Position.Longitude.ToString();
+            // TODO: use for other users in area
+            var geo = new Geolocator();
+            Geoposition pos = await geo.GetGeopositionAsync();
+            result += "La: " + pos.Coordinate.Point.Position.Latitude.ToString() + "\n";
+            result += "Lo: " + pos.Coordinate.Point.Position.Longitude.ToString() + "\n";
             //text += " (Accuracy: " + pos.Coordinate.Accuracy.ToString() + ")  ";
 
-            text += "La: 32.42; ";
-            text += "Lo: 31.33";
-            //text += " (Accuracy: 15m)  ";
+            //result += "La: 32.42; ";
+            //result += "Lo: 31.33";
+            ////result += " (Accuracy: 15m)  ";
 
-            //var compas = Compass.GetDefault();
-            //var read = compas.GetCurrentReading();
-            //text += string.Format("{0,5:0.00}", read.HeadingMagneticNorth);
-            return text;
+            var compas = Compass.GetDefault();
+            var read = compas.GetCurrentReading();
+            result += string.Format("{0,5:0.00} degrees", read.HeadingMagneticNorth);
+            return result;
         }
     }
 }

@@ -212,8 +212,10 @@ namespace UpgradeYourself.Windows.Pages
 
         private async void OnShake(object sender, AccelerometerShakenEventArgs args)
         {
-            //var res = await this.GetLocation();
-            await new MessageDialog("For hint long tap/hold on the question.").ShowAsync();
+            await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                new MessageDialog("For hint long tap/hold on the question.").ShowAsync();
+            });          
         }
     }
 }
