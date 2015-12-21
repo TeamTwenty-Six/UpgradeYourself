@@ -15,8 +15,8 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using Windows.UI.Notifications;
-using Windows.UI.Popups;
+//using Windows.UI.Notifications;
+//using Windows.UI.Popups;
 
 // The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
 
@@ -29,25 +29,25 @@ namespace UpgradeYourself.Windows.Views
             this.InitializeComponent();
         }
 
-        private async void OnReminderButtonClicked(object sender, RoutedEventArgs e)
-        {
-            var notifier = ToastNotificationManager.CreateToastNotifier();
+        //private async void OnReminderButtonClicked(object sender, RoutedEventArgs e)
+        //{
+        //    var notifier = ToastNotificationManager.CreateToastNotifier();
 
-            if (notifier.Setting != NotificationSetting.Enabled)
-            {
-                var dialog = new MessageDialog("Notifications are not enabled!");
-                await dialog.ShowAsync();
-                return;
-            }
+        //    if (notifier.Setting != NotificationSetting.Enabled)
+        //    {
+        //        var dialog = new MessageDialog("Notifications are not enabled!");
+        //        await dialog.ShowAsync();
+        //        return;
+        //    }
 
-            var template = ToastNotificationManager.GetTemplateContent(ToastTemplateType.ToastText01);
-            var element = template.GetElementsByTagName("text")[0];
-            element.AppendChild(template.CreateTextNode("Practice regularly to stay fit!"));
+        //    var template = ToastNotificationManager.GetTemplateContent(ToastTemplateType.ToastText01);
+        //    var element = template.GetElementsByTagName("text")[0];
+        //    element.AppendChild(template.CreateTextNode("Practice regularly to stay fit!"));
 
-            var date = DateTimeOffset.Now.AddSeconds(15);
-            var stn = new ScheduledToastNotification(template, date);
-            notifier.AddToSchedule(stn);
-        }
+        //    var date = DateTimeOffset.Now.AddSeconds(15);
+        //    var stn = new ScheduledToastNotification(template, date);
+        //    notifier.AddToSchedule(stn);
+        //}
         private void HamburgerButton_Click(object sender, RoutedEventArgs e)
         {
             NavSplitView.IsPaneOpen = !NavSplitView.IsPaneOpen;
