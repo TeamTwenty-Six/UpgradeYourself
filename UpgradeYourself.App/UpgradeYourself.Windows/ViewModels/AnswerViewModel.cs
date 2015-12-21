@@ -3,13 +3,23 @@
     using GalaSoft.MvvmLight;
     using SQLite;
 
-    //[Table("Answer")]
     public class AnswerViewModel : ViewModelBase
     {
-        //public int QuestionId { get; set; }
+        private string content;
 
-        //[MaxLength(250)]
-        public string Content { get; set; }
+        public string Content
+        {
+            get
+            {
+                return this.content;
+            }
+
+            set
+            {
+                this.content = value;
+                this.RaisePropertyChanged(() => this.Content);
+            }
+        }
 
         public bool IsCorrect { get; set; }
     }

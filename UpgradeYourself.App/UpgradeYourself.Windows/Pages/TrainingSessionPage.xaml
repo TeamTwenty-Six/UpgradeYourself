@@ -34,8 +34,9 @@
                            Holding="Question_Holding"></TextBlock>
                 <GridView Grid.Row="1" ItemTemplate="{StaticResource TextBlockAnswerTemplate}"
                       ItemsSource="{Binding CurrentQuestion.Answers}"
-                      Tapped="OnGridViewAnswerItemClick"
-                      HorizontalAlignment="Center">
+                      DoubleTapped="OnGridViewAnswerItemClick"
+                      HorizontalAlignment="Center"
+                          x:Name="gridViewAnswers">
                     <ItemsPanelTemplate>
                         <ItemsWrapGrid MaximumRowsOrColumns="1" />
                     </ItemsPanelTemplate>

@@ -132,6 +132,7 @@
     <Compile Include="Services\SkillSummaryService.cs" />
     <Compile Include="Services\UserProfileService.cs" />
     <Compile Include="ViewModels\AnswerViewModel.cs" />
+    <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\SelectLevelViewModel.cs" />
     <Compile Include="ViewModels\LoginPageViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />

@@ -24,7 +24,7 @@
             <views:PageHeader PageTitleText="Profile" Grid.Row="0" Grid.Column="0"></views:PageHeader>
 
             <StackPanel Grid.Row="1" x:Name="ContentRoot" Margin="19,9.5,19,0">
-                <!--<HyperlinkButton Content="Log out" HorizontalAlignment="Right" Margin="0,0,10,0" Click="OnLogOutButtonClick"></HyperlinkButton>-->
+                <HyperlinkButton Content="Log out" HorizontalAlignment="Right" Margin="0,0,10,0" Click="OnLogOutButtonClick"></HyperlinkButton>
                 <TextBlock Text="{Binding Username}"  Style="{StaticResource TextBlockIdentityStyle}" />
                 <!--<TextBlock Text="{Binding LevelsPassed.Keys}"  Style="{StaticResource TextBlockIdentityStyle}" /> Tapped="OnGridViewAnswerItemClick"-->
                 <GridView Grid.Row="1" ItemTemplate="{StaticResource TextBlockLevelsPassedTemplate}"

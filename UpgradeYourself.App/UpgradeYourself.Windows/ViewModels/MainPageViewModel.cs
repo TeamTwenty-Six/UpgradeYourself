@@ -12,7 +12,7 @@
     using System.Threading.Tasks;
     using System.Windows.Input;
 
-    public class MainPageViewModel : ViewModelBase
+    public class MainPageViewModel : BaseViewModel
     {
         private ICommand goToRegisterCommand;
         private ICommand goToLogInCommand;

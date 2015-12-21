@@ -23,9 +23,9 @@
                         AutomationProperties.AutomationId="BackButton"
                         AutomationProperties.ItemType="Navigation Button"/>-->
         <SplitView Grid.Column="0" x:Name="NavSplitView" DisplayMode="CompactOverlay" IsPaneOpen="False"
-                   CompactPaneLength="50" OpenPaneLength="150" >
+                   CompactPaneLength="50" OpenPaneLength="150">
             <SplitView.Pane>
-                <StackPanel Background="Black" Orientation="Horizontal">
+                <StackPanel Background="Black" Orientation="Horizontal" >
                     <Button x:Name="HamburgerButton" FontFamily="Segoe MDL2 Assets" Content="&#xE700;"
                     Width="50" Height="50" Background="Transparent" Click="HamburgerButton_Click" FontSize="20"/>
 

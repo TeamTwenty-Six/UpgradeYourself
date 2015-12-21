@@ -150,7 +150,26 @@ namespace UpgradeYourself.Windows.Pages
 
         private void Question_Holding(object sender, HoldingRoutedEventArgs e)
         {
+            var wrongAnswer = this.ViewModel.CurrentQuestion.Answers.FirstOrDefault(a => !a.IsCorrect);
+
+            foreach (var item in gridViewAnswers.Items)
+            {
+                var button = item as AnswerViewModel;
+                if (button == null)
+                {
+                    continue;
+                }
+
+                if (wrongAnswer != null && button.Content.ToString() == wrongAnswer.Content)
+                {
+                    button.Content = string.Empty;
+                    break;
+                }
+            }
+
+            this.ViewModel.Points -= 3;
             this.Hint.Visibility = Visibility.Visible;
+            //this.Hint.Text = "Hint";
             Hide();
         }
 
@@ -173,5 +192,13 @@ namespace UpgradeYourself.Windows.Pages
             AnswerStatusCorrect.Visibility = Visibility.Collapsed;
             Hint.Visibility = Visibility.Collapsed;
         }
+
+        //private void TextBlock_ManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
+        //{
+        //    var gridView = sender as TextBlock;
+        //    var scale = e.Delta.Scale;
+        //    gridView.Width *= 2;
+        //    gridView.Height *= 2;
+        //}
     }
 }

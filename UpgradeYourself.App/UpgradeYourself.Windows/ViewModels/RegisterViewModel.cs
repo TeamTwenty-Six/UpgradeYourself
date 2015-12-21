@@ -18,19 +18,26 @@ namespace UpgradeYourself.Windows.ViewModels
 
         public async Task<bool> Register()
         {
-            try
+            if (await this.IsConnectedToInternet())
             {
-                var user = new ParseUser()
+                try
                 {
-                    Username = this.Username,
-                    Password = this.Password
-                };
+                    var user = new ParseUser()
+                    {
+                        Username = this.Username,
+                        Password = this.Password
+                    };
 
-                await user.SignUpAsync();
-                await ParseUser.LogInAsync(this.Username, this.Password);
-                return true;
+                    await user.SignUpAsync();
+                    await ParseUser.LogInAsync(this.Username, this.Password);
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    return false;
+                }
             }
-            catch (Exception ex)
+            else
             {
                 return false;
             }
