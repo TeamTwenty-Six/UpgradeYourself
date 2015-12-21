@@ -18,12 +18,50 @@
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
+<Page
+    x:Class="UpgradeYourself.Windows.Pages.UserProfilePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:UpgradeYourself.Windows.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+     xmlns:views="using:UpgradeYourself.Windows.Views"
+    mc:Ignorable="d">
+
+    <ScrollViewer Grid.Row="1" Grid.Column="0">
+        <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+            <Grid.ChildrenTransitions>
+                <TransitionCollection>
+                    <EntranceThemeTransition/>
+                </TransitionCollection>
+            </Grid.ChildrenTransitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <views:PageHeader PageTitleText="Profile" Grid.Row="0" Grid.Column="0"></views:PageHeader>
             <StackPanel Grid.Row="1" x:Name="ContentRoot" Margin="19,9.5,19,0">
+                <TextBlock Text="{Binding Username}"  Style="{StaticResource TextBlockIdentityStyle}" />
+                <TextBlock Text="{Binding Location}"  Style="{StaticResource TextBlockIdentityStyle}" />
+
+                <!--<TextBlock Text="{Binding LevelsPassed.Keys}"  Style="{StaticResource TextBlockIdentityStyle}" /> Tapped="OnGridViewAnswerItemClick"-->
+                <GridView Grid.Row="1" ItemTemplate="{StaticResource TextBlockLevelsPassedTemplate}"
+                      ItemsSource="{Binding LastLevelPassed}"                  
+                      HorizontalAlignment="Center">
+                    <ItemsPanelTemplate>
+                        <ItemsWrapGrid MaximumRowsOrColumns="1" />
+                    </ItemsPanelTemplate>
+                </GridView>
+                <GridView Grid.Row="1" ItemTemplate="{StaticResource TextBlockPointsTemplate}"
+                      ItemsSource="{Binding Points}"                 
+                      HorizontalAlignment="Center">
+                    <ItemsPanelTemplate>
+                        <ItemsWrapGrid MaximumRowsOrColumns="1" />
+                    </ItemsPanelTemplate>
+                </GridView>
             </StackPanel>
             <HyperlinkButton Grid.Row="1" Content="Log out" HorizontalAlignment="Stretch" Margin="0,0,10,0" Click="OnLogOutButtonClick"></HyperlinkButton>
         </Grid>

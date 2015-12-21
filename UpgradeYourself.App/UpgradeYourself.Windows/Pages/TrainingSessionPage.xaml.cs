@@ -4,12 +4,17 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
+using UpgradeYourself.Data;
 using UpgradeYourself.Models.Models;
 using UpgradeYourself.Windows.DataModels;
 using UpgradeYourself.Windows.Services;
 using UpgradeYourself.Windows.ViewModels;
+using Windows.Devices.Sensors;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Core;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -27,6 +32,9 @@ namespace UpgradeYourself.Windows.Pages
     /// </summary>
     public sealed partial class TrainingSessionPage : Page
     {
+        private SQLiteData sqliteData;
+        private Accelerometer accelerometer;
+
         public TrainingSessionPage()
             : this(new TrainingSessionViewModel())
         {
@@ -36,6 +44,11 @@ namespace UpgradeYourself.Windows.Pages
         {
             this.InitializeComponent();
             this.ViewModel = viewModel;
+            this.sqliteData = new SQLiteData();
+            accelerometer = Accelerometer.GetDefault();
+            accelerometer.Shaken += OnShake;
+
+            //this.OnShake(null, null);
         }
 
         public TrainingSessionViewModel ViewModel
@@ -62,7 +75,7 @@ namespace UpgradeYourself.Windows.Pages
                 this.TextBlockNoAvailableTrainings.Visibility = Visibility.Visible;
                 return;
             }
-            
+
             this.ViewModel.Questions = questions;
             this.ViewModel.CurrentIndex = 0;
             //this.ViewModel.CurrentQuestion = this.ViewModel.Questions[0];
@@ -87,7 +100,7 @@ namespace UpgradeYourself.Windows.Pages
             {
                 // TODO : display points
                 this.ViewModel.Points += 10;
-                this.AnswerStatusCorrect.Text = string.Format("Weldone, you are correct! +{0} points", ViewModel.Points);
+                this.AnswerStatusCorrect.Text = string.Format("Well done, you are correct! +{0} points", ViewModel.Points);
                 this.AnswerStatusCorrect.Visibility = Visibility.Visible;
                 Hide();
             }
@@ -103,41 +116,38 @@ namespace UpgradeYourself.Windows.Pages
 
             if (this.ViewModel.CurrentIndex == this.ViewModel.Questions.Count)
             {
-                //// TODO: check
-                //var skillSummaryService = new SkillSummaryService();
+                var skillSummaryService = new SkillSummaryService();
 
-                //var userSkillSummary = skillSummaryService.GetUserSkillSummary(ParseUser.CurrentUser.Username, this.ViewModel.Skill);
+                var userSkillSummary = skillSummaryService.GetUserSkillSummary(ParseUser.CurrentUser.Username, this.ViewModel.Skill);
 
-                //if (userSkillSummary == null)
-                //{
-                //    userSkillSummary = new SkillSummary()
-                //    {
-                //        Username = ParseUser.CurrentUser.Username,
-                //        Skill = this.ViewModel.Skill,
-                //        Points = this.ViewModel.Points,
-                //        Level = this.ViewModel.Level
-                //    };
+                if (userSkillSummary == null)
+                {
+                    userSkillSummary = new SkillSummary()
+                    {
+                        Username = ParseUser.CurrentUser.Username,
+                        Skill = this.ViewModel.Skill,
+                        Points = this.ViewModel.Points,
+                        Level = this.ViewModel.Level
+                    };
 
-                //    skillSummaryService.InsertSkillSummary(userSkillSummary);
-                //}
+                    skillSummaryService.InsertSkillSummary(userSkillSummary);
+                }
 
-                //// update
-                //userSkillSummary.Points += this.ViewModel.Points;
-                //if (userSkillSummary.Level < this.ViewModel.Level)
-                //{
-                //    userSkillSummary.Level = this.ViewModel.Level;
-                //    skillSummaryService.UpdateSkillSummary(userSkillSummary);
-                //}
+                // update
+                if (userSkillSummary.Level < this.ViewModel.Level)
+                {
+                    userSkillSummary.Points += this.ViewModel.Points;
+                    userSkillSummary.Level = this.ViewModel.Level;
+                }
+
+                skillSummaryService.UpdateSkillSummary(userSkillSummary);
 
                 // TODO: save points in user profile
                 // navigate to user profile?
-                // add skill summary page into database - update level and points
                 this.Frame.Navigate(typeof(TrainingSessionSummaryPage),
                     new TrainingSessionSummaryViewModel { Skill = this.ViewModel.Skill, Level = this.ViewModel.Level, Points = this.ViewModel.Points, NumberOfQuestions = this.ViewModel.Questions.Count });
             }
         }
-
-        
 
         private IList<QuestionViewModel> GetQuestions(string skillName, int level)
         {
@@ -148,8 +158,27 @@ namespace UpgradeYourself.Windows.Pages
         }
 
         private void Question_Holding(object sender, HoldingRoutedEventArgs e)
-        {        
+        {
+            var wrongAnswer = this.ViewModel.CurrentQuestion.Answers.FirstOrDefault(a => !a.IsCorrect);
+
+            foreach (var item in gridViewAnswers.Items)
+            {
+                var button = item as AnswerViewModel;
+                if (button == null)
+                {
+                    continue;
+                }
+
+                if (wrongAnswer != null && button.Content.ToString() == wrongAnswer.Content)
+                {
+                    button.Content = string.Empty;
+                    this.ViewModel.Points -= 3;
+                    break;
+                }
+            }
+
             this.Hint.Visibility = Visibility.Visible;
+            //this.Hint.Text = "Hint";
             Hide();
         }
 
@@ -170,7 +199,23 @@ namespace UpgradeYourself.Windows.Pages
         {
             AnswerStatusWrong.Visibility = Visibility.Collapsed;
             AnswerStatusCorrect.Visibility = Visibility.Collapsed;
-            Hint.Visibility = Visibility.Collapsed;           
+            Hint.Visibility = Visibility.Collapsed;
+        }
+
+        //private void TextBlock_ManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
+        //{
+        //    var gridView = sender as TextBlock;
+        //    var scale = e.Delta.Scale;
+        //    gridView.Width *= 2;
+        //    gridView.Height *= 2;
+        //}
+
+        private async void OnShake(object sender, AccelerometerShakenEventArgs args)
+        {
+            await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                new MessageDialog("For hint long tap/hold on the question.").ShowAsync();
+            });          
         }
     }
 }

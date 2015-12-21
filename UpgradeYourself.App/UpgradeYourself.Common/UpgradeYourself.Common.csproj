@@ -108,6 +108,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GlobalConstants.cs" />
+    <Compile Include="InputValidator.cs" />
     <Compile Include="UserNotification.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\UpgradeYourself.Common.rd.xml" />

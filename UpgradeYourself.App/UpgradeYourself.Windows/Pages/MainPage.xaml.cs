@@ -1,4 +1,4 @@
-﻿using SQLite;
+﻿
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -74,7 +74,7 @@ namespace UpgradeYourself.Windows.Pages
                 //await dataSeeder.SeedSkills();
             }
 
-            
+
             // test - get user profile TODO: remove
 
             //SQLiteAsyncConnection conn = new SQLiteAsyncConnection(GlobalConstants.DbName);

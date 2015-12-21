@@ -1,17 +1,21 @@
 ﻿namespace UpgradeYourself.Windows.ViewModels
 {
+    using GalaSoft.MvvmLight;
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using UpgradeYourself.Common;
 
-    public class UserProfileViewModel
+    public class UserProfileViewModel : ViewModelBase
     {
+        private string location;
+
         // TODO: map from user? - from summary skill
         public UserProfileViewModel()
         {
-            this.LevelsPassed = new Dictionary<string, List<int>>();
+            this.LastLevelPassed = new Dictionary<string, int>();
             this.Points = new Dictionary<string, int>();
         }
 
@@ -19,18 +23,27 @@
 
         public string Password { get; set; }
 
-        public IDictionary<string, List<int>> LevelsPassed { get; set; }
+        public string Location
+        {
+            get
+            {
+                return this.location;
+            }
+
+            set
+            {
+                this.location = value;
+                this.RaisePropertyChanged(() => this.Location);
+            }
+        }
+
+        public IDictionary<string, int> LastLevelPassed { get; set; }
 
         public IDictionary<string, int> Points { get; set; }
 
         public void AddLevelToSkill(string skill, int level)
         {
-            if (!this.LevelsPassed.ContainsKey(skill))
-            {
-                this.LevelsPassed[skill] = new List<int>();
-            }
-
-            this.LevelsPassed[skill].Add(level);
+            this.LastLevelPassed[skill] = level;
         }
 
         public void AddPointsToSkill(string skill, int points)

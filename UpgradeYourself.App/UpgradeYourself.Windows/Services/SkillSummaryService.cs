@@ -9,33 +9,26 @@
     using UpgradeYourself.Common;
     using UpgradeYourself.Models.Models;
     using ViewModels;
+    using Data;
     public class SkillSummaryService
     {
         private SQLiteAsyncConnection conn;
+        private SQLiteData sqliteData;
 
         public SkillSummaryService()
-            : this(new SQLiteAsyncConnection(GlobalConstants.DbName))
+            : this(new SQLiteAsyncConnection(GlobalConstants.DbName), new SQLiteData())
         {
         }
 
-        public SkillSummaryService(SQLiteAsyncConnection conn)
+        public SkillSummaryService(SQLiteAsyncConnection conn, SQLiteData sqliteData)
         {
             this.conn = conn;
+            this.sqliteData = sqliteData;
         }
 
-        public async Task<ICollection<SkillSummary>> GetAllUserSkillSummaries(string username)
+        public ICollection<SkillSummary> GetAllUserSkillSummaries(string username)
         {
-            SQLiteAsyncConnection conn = new SQLiteAsyncConnection(GlobalConstants.DbName);
-            var queryProfiles = conn.Table<UserProfile>();
-            var userProfiles = await queryProfiles.ToListAsync();
-
-            var querySkills = conn.Table<SkillSummary>();
-            var skills = await querySkills.ToListAsync();
-            //var queryProfiles = conn.Table<UserProfile>();
-            //var userProfiles = await queryProfiles.ToListAsync();
-
-            //var querySkills = this.conn.Table<SkillSummary>();
-            var skillSummaries = await querySkills.ToListAsync();
+            var skillSummaries = this.sqliteData.AllAsync<SkillSummary>();
             var userSkillSummaries = skillSummaries.Where(u => u.Username == username).ToList();
 
             return userSkillSummaries;
@@ -43,7 +36,7 @@
 
         public SkillSummary GetUserSkillSummary(string username, string skill)
         {
-            var userSkillSummaries = this.GetAllUserSkillSummaries(username).Result;
+            var userSkillSummaries = this.GetAllUserSkillSummaries(username);
             var skillSummary = userSkillSummaries.FirstOrDefault(s => s.Skill == skill);
 
             return skillSummary;
