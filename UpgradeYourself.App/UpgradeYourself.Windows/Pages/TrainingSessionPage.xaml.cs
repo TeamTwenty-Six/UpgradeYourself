@@ -4,13 +4,17 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using UpgradeYourself.Data;
 using UpgradeYourself.Models.Models;
 using UpgradeYourself.Windows.DataModels;
 using UpgradeYourself.Windows.Services;
 using UpgradeYourself.Windows.ViewModels;
+using Windows.Devices.Sensors;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Core;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -29,6 +33,7 @@ namespace UpgradeYourself.Windows.Pages
     public sealed partial class TrainingSessionPage : Page
     {
         private SQLiteData sqliteData;
+        private Accelerometer accelerometer;
 
         public TrainingSessionPage()
             : this(new TrainingSessionViewModel())
@@ -40,6 +45,10 @@ namespace UpgradeYourself.Windows.Pages
             this.InitializeComponent();
             this.ViewModel = viewModel;
             this.sqliteData = new SQLiteData();
+            accelerometer = Accelerometer.GetDefault();
+            accelerometer.Shaken += OnShake;
+
+            //this.OnShake(null, null);
         }
 
         public TrainingSessionViewModel ViewModel
@@ -163,11 +172,11 @@ namespace UpgradeYourself.Windows.Pages
                 if (wrongAnswer != null && button.Content.ToString() == wrongAnswer.Content)
                 {
                     button.Content = string.Empty;
+                    this.ViewModel.Points -= 3;
                     break;
                 }
             }
 
-            this.ViewModel.Points -= 3;
             this.Hint.Visibility = Visibility.Visible;
             //this.Hint.Text = "Hint";
             Hide();
@@ -200,5 +209,11 @@ namespace UpgradeYourself.Windows.Pages
         //    gridView.Width *= 2;
         //    gridView.Height *= 2;
         //}
+
+        private async void OnShake(object sender, AccelerometerShakenEventArgs args)
+        {
+            //var res = await this.GetLocation();
+            await new MessageDialog("For hint long tap/hold on the question.").ShowAsync();
+        }
     }
 }

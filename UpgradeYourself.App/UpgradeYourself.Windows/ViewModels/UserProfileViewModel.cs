@@ -1,13 +1,17 @@
 ﻿namespace UpgradeYourself.Windows.ViewModels
 {
+    using GalaSoft.MvvmLight;
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
     using UpgradeYourself.Common;
-    public class UserProfileViewModel
+
+    public class UserProfileViewModel : ViewModelBase
     {
+        private string location;
+
         // TODO: map from user? - from summary skill
         public UserProfileViewModel()
         {
@@ -18,6 +22,20 @@
         public string Username { get; set; }
 
         public string Password { get; set; }
+
+        public string Location
+        {
+            get
+            {
+                return this.location;
+            }
+
+            set
+            {
+                this.location = value;
+                this.RaisePropertyChanged(() => this.Location);
+            }
+        }
 
         public IDictionary<string, int> LastLevelPassed { get; set; }
 

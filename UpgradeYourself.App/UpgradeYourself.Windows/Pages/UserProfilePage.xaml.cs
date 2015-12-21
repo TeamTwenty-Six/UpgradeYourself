@@ -4,10 +4,14 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using UpgradeYourself.Windows.Services;
 using UpgradeYourself.Windows.ViewModels;
+using Windows.Devices.Geolocation;
+using Windows.Devices.Sensors;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -50,6 +54,7 @@ namespace UpgradeYourself.Windows.Pages
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            this.Locate();
             var userProfileService = new UserProfileService();
             var profiles = userProfileService.GetCurrentUserProfile(ParseUser.CurrentUser.Username);
 
@@ -71,6 +76,33 @@ namespace UpgradeYourself.Windows.Pages
         {
             ParseUser.LogOut();
             (Window.Current.Content as Frame).Navigate(typeof(LogInPage));
+        }
+
+        private async void Locate()
+        {
+            var res = await this.GetLocation();
+            this.ViewModel.Location = res.ToString();
+            //await new MessageDialog(res).ShowAsync();
+        }
+
+        private async Task<string> GetLocation()
+        {
+            string text = string.Empty;
+
+            //var geo = new Geolocator();
+            //Geoposition pos = await geo.GetGeopositionAsync();
+            //text += "Latitude: " + pos.Coordinate.Point.Position.Latitude.ToString() + "; ";
+            //text += "Longitude: " + pos.Coordinate.Point.Position.Longitude.ToString();
+            //text += " (Accuracy: " + pos.Coordinate.Accuracy.ToString() + ")  ";
+
+            text += "La: 32.42; ";
+            text += "Lo: 31.33";
+            //text += " (Accuracy: 15m)  ";
+
+            //var compas = Compass.GetDefault();
+            //var read = compas.GetCurrentReading();
+            //text += string.Format("{0,5:0.00}", read.HeadingMagneticNorth);
+            return text;
         }
     }
 }
